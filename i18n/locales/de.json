@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "title": "Konrad Thiemann · Frontend Developer",
+    "description": "Frontend Developer mit Fokus auf Vue, Nuxt und reduzierte, funktionale Interfaces. E-Commerce, UI-Libraries und KI-gestützte Entwicklung."
+  },
+  "nav": {
+    "about": "Über mich",
+    "experience": "Erfahrung",
+    "tech": "Stack",
+    "projects": "Projekte",
+    "contact": "Kontakt"
+  },
+  "a11y": {
+    "skip": "Zum Inhalt springen",
+    "switchLang": "Sprache wechseln"
+  },
+  "hero": {
+    "role": "Frontend Developer",
+    "tagline": "Funktional, nicht aufgebläht.",
+    "intro": "Ich baue Frontends, die sich auf das Wesentliche konzentrieren – mit Vue und Nuxt, einem Faible für Minimalismus und KI als Werkzeug im Alltag."
+  },
+  "about": {
+    "title": "Über mich",
+    "body": "Ich bin Frontend Developer und kümmere mich um Instandhaltung und Weiterentwicklung eines Shop-Frontends im E-Commerce. Mich begeistert reduziertes Design, das trotzdem alles kann, was es soll – und kontinuierliches Lernen, gerne mit KI als Sparringspartner.",
+    "valuesTitle": "Was mich antreibt",
+    "values": [
+      "Minimalismus – funktional, aber nicht aufgebläht",
+      "Programmierung mit KI",
+      "Lernen & Weiterentwicklung",
+      "Struktur & Organisation"
+    ]
+  },
+  "experience": {
+    "title": "Erfahrung",
+    "roleTitle": "Frontend Developer",
+    "roleSummary": "Instandhaltung und Weiterentwicklung des Shop-Frontends.",
+    "items": [
+      "Entwicklung und Pflege einer UI-Library",
+      "Vue & Nuxt im produktiven E-Commerce-Einsatz",
+      "Agiles Arbeiten nach Scrum",
+      "CI/CD-Pipelines",
+      "Anleiten und Begleiten von Auszubildenden",
+      "Technische SEO im Frontend"
+    ]
+  },
+  "tech": {
+    "title": "Tech-Stack",
+    "note": "Werkzeuge und Technologien, mit denen ich täglich arbeite."
+  },
+  "projects": {
+    "title": "Projekte",
+    "viewRepo": "Repository ansehen",
+    "note": "Persönliche Projekte – zum Lernen, Ausprobieren und aus Freude am Bauen.",
+    "items": {
+      "pokekon": {
+        "name": "Pokekon",
+        "desc": "Persönliches Projekt rund um das Pokémon-Sammelkartenspiel. (Beschreibung anpassen.)"
+      },
+      "doewe": {
+        "name": "Doewe",
+        "desc": "Plattform zum Erfassen und Auswerten persönlicher Finanzen: Transaktionen, Kategorien, Budgets und Analysen. Monorepo mit starkem Fokus auf Developer Experience."
+      },
+      "noorc": {
+        "name": "No-orc · El Pollo Loco",
+        "desc": "Ein 2D-Jump-’n’-Run fürs Web, umgesetzt mit objektorientiertem JavaScript und HTML5-Canvas."
+      },
+      "waldbingo": {
+        "name": "Waldbingo",
+        "desc": "Kleines Web-Projekt rund um ein Bingo für Spaziergänge in der Natur. (In Arbeit – Beschreibung anpassen.)"
+      }
+    }
+  },
+  "education": {
+    "title": "Weiterbildung",
+    "school": "Developer Akademie",
+    "desc": "Intensive Ausbildung zum Web Developer mit Fokus auf moderne Frontend-Entwicklung."
+  },
+  "personal": {
+    "title": "Neben dem Code",
+    "items": [
+      "Competitive Pokémon TCG",
+      "Skateboard fahren",
+      "Pizza backen"
+    ]
+  },
+  "contact": {
+    "title": "Kontakt",
+    "body": "Lust auf einen Austausch? Du erreichst mich am besten hier:",
+    "email": "E-Mail",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "footer": {
+    "built": "Gebaut mit Nuxt & Vue."
+  }
+}
