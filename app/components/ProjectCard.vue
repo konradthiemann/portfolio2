@@ -84,7 +84,9 @@ defineEmits<{ toggle: [] }>()
 
 <style scoped lang="scss">
 .card {
-  background: var(--surface);
+  /* Leicht durchscheinend, damit das zentrierte Hintergrund-Motiv dezent
+     hinter der Kachel sichtbar bleibt. */
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
   border: 1px solid var(--line);
   border-radius: 14px;
   overflow: hidden;
