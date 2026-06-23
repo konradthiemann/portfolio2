@@ -7,6 +7,16 @@ export default defineNuxtConfig({
 
   css: ['~/assets/scss/main.scss'],
 
+  // Serverseitige Secrets – via Umgebungsvariablen überschreiben:
+  // NUXT_SMTP_USER, NUXT_SMTP_PASS, NUXT_CONTACT_TO
+  runtimeConfig: {
+    smtpHost: 'smtp.gmail.com',
+    smtpPort: '465',
+    smtpUser: '',
+    smtpPass: '',
+    contactTo: 'konrad.thiemann@gmail.com',
+  },
+
   i18n: {
     strategy: 'prefix',
     defaultLocale: 'de',

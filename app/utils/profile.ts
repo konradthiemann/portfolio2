@@ -6,7 +6,17 @@ export interface Project {
   slug: string
   url: string
   stack: string[]
+  /** Optionales Vorschaubild (in /public/projects). WebP + JPG-Fallback;
+     nur `webp` angeben, der JPG-Pfad wird daraus abgeleitet. Fehlt das Feld,
+     zeigt die Karte kein Bild. */
+  image?: { webp: string; jpg: string }
 }
+
+// Feature-Flags. Dark Mode ist vorerst deaktiviert – auf `true` setzen,
+// um den Umschalter wieder einzublenden (siehe ThemeToggle + nuxt.config-Script).
+export const features = {
+  darkMode: false,
+} as const
 
 export const profile = {
   name: 'Konrad Thiemann',
@@ -15,15 +25,25 @@ export const profile = {
   // E-Mail-Button ausgeblendet und nur LinkedIn/GitHub angezeigt.
   email: '',
 
+  // Profilbild im Hero (in /public). Transparente Strichzeichnung: WebP mit PNG-Fallback.
+  image: {
+    webp: '/profile.webp',
+    png: '/profile.png',
+  },
+
   links: {
     linkedin: 'https://www.linkedin.com/in/konrad-thiemann/',
     github: 'https://github.com/konradthiemann',
+    podcast: 'https://www.youtube.com/watch?v=Zf0ADx3NcbQ',
   },
 
-  // Reihenfolge bestimmt die Anzeige.
+  // Reihenfolge bestimmt die Anzeige. Outline-Icons dazu in TechIcon.vue.
+  // Java & Python sind in TechIcon bereits vorbereitet – fürs Backend einfach
+  // 'Java' bzw. 'Python' hier ergänzen, dann erscheinen sie inkl. Icon.
   tech: [
     'Nuxt',
     'Vue',
+    'Vite',
     'TypeScript',
     'JavaScript',
     'SCSS',
@@ -38,28 +58,27 @@ export const profile = {
     'Railway',
     'CI/CD',
     'VS Code',
+    'Jira',
+    'Miro',
   ],
 
   projects: <Project[]>[
     {
-      slug: 'pokekon',
-      url: 'https://github.com/konradthiemann/Pokekon',
-      stack: ['Vue', 'TypeScript'],
-    },
-    {
       slug: 'doewe',
       url: 'https://github.com/konradthiemann/Doewe',
       stack: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL'],
+      image: { webp: '/projects/doewe.webp', jpg: '/projects/doewe.jpg' },
     },
     {
-      slug: 'noorc',
-      url: 'https://github.com/konradthiemann/No-orc',
-      stack: ['JavaScript', 'HTML5 Canvas'],
+      slug: 'pokemeta',
+      url: 'https://github.com/konradthiemann/Pokekon',
+      stack: ['Vue', 'TypeScript'],
+      image: { webp: '/projects/pokemeta.webp', jpg: '/projects/pokemeta.jpg' },
     },
     {
       slug: 'waldbingo',
       url: 'https://github.com/konradthiemann/Waldbingo',
-      stack: ['Web'],
+      stack: ['Nuxt', 'KI'],
     },
   ],
 }

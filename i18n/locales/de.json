@@ -1,91 +1,170 @@
 {
   "meta": {
-    "title": "Konrad Thiemann · Frontend Developer",
-    "description": "Frontend Developer mit Fokus auf Vue, Nuxt und reduzierte, funktionale Interfaces. E-Commerce, UI-Libraries und KI-gestützte Entwicklung."
+    "title": "Konrad Thiemann · Software-Entwickler",
+    "description": "Software-Entwickler mit Schwerpunkt Frontend. Ich baue durchdachte, schlanke und dokumentierte Lösungen – im produktiven E-Commerce und in eigenen Projekten, mit KI als bewusst gebautem Werkzeug."
   },
   "nav": {
-    "about": "Über mich",
-    "experience": "Erfahrung",
-    "tech": "Stack",
+    "home": "Start",
+    "approach": "Arbeitsweise",
+    "experience": "Verantwortung",
     "projects": "Projekte",
+    "voices": "Stimmen",
     "contact": "Kontakt"
   },
   "a11y": {
     "skip": "Zum Inhalt springen",
-    "switchLang": "Sprache wechseln"
+    "switchLang": "Sprache wechseln",
+    "toggleTheme": "Hellen/dunklen Modus umschalten",
+    "expand": "Details ein- und ausblenden",
+    "toContact": "Zum Kontaktformular springen"
   },
   "hero": {
-    "role": "Frontend Developer",
-    "tagline": "Funktional, nicht aufgebläht.",
-    "intro": "Ich baue Frontends, die sich auf das Wesentliche konzentrieren – mit Vue und Nuxt, einem Faible für Minimalismus und KI als Werkzeug im Alltag."
+    "role": "Software-Entwickler",
+    "tagline": "Software-Entwickler, der bewusst baut.",
+    "intro": "Ich entwickle Dinge, die Menschen den Alltag leichter machen – und so, dass ein Team darauf aufbauen kann: durchdacht, schlank, dokumentiert. Frameworks und KI nutze ich als bewusste Entscheidung, nicht aus Gewohnheit.",
+    "ctaPrimary": "Kontakt aufnehmen",
+    "ctaSecondary": "Projekte ansehen"
   },
-  "about": {
-    "title": "Über mich",
-    "body": "Ich bin Frontend Developer und kümmere mich um Instandhaltung und Weiterentwicklung eines Shop-Frontends im E-Commerce. Mich begeistert reduziertes Design, das trotzdem alles kann, was es soll – und kontinuierliches Lernen, gerne mit KI als Sparringspartner.",
-    "valuesTitle": "Was mich antreibt",
-    "values": [
-      "Minimalismus – funktional, aber nicht aufgebläht",
-      "Programmierung mit KI",
-      "Lernen & Weiterentwicklung",
-      "Struktur & Organisation"
-    ]
+  "approach": {
+    "title": "Wie ich arbeite",
+    "lead": "*Belegen statt behaupten* – vier Prinzipien.",
+    "items": [
+      {
+        "title": "Ich hinterfrage, bevor ich baue.",
+        "desc": "Bevor ich eine Lösung übernehme, prüfe ich, ob sie das Problem wirklich trifft. So habe ich über 100 UI-Bausteine einer eigenen Bibliothek mitgestaltet, die ein zugekauftes Framework ablösen – schlanker und schneller."
+      },
+      {
+        "title": "Ich baue passgenau, nicht überladen.",
+        "desc": "Schlanke, gezielte Lösungen vor universellen Schwergewichten: weniger Abhängigkeiten, klarere Verantwortlichkeiten, bessere Performance."
+      },
+      {
+        "title": "Qualität ist eingebaut – und wird gelebt.",
+        "desc": "Automatische Quality-Gates (Lint → Typecheck → Test → Build) und nachvollziehbare Commits – damit ein Team schnell und sicher weiterbauen kann."
+      },
+      {
+        "title": "Ich befähige andere.",
+        "desc": "Ob Azubi, Praktikant oder Team – ich gebe Wissen weiter, statt es zu horten. Auch zum sinnvollen Einsatz von KI im Entwickleralltag."
+      }
+    ],
+    "ctaNote": "Klingt das nach einem Match?",
+    "ctaButton": "Lass uns sprechen"
   },
   "experience": {
-    "title": "Erfahrung",
-    "roleTitle": "Frontend Developer",
-    "roleSummary": "Instandhaltung und Weiterentwicklung des Shop-Frontends.",
+    "title": "Was ich bei der Arbeit verantworte",
+    "lead": "Seit über 2,5 Jahren entwickle ich im Frontend eines mehrmarkenfähigen E-Commerce-Systems. Ich betreue nicht nur den Shop, sondern das System darum herum – verteilt über acht Teilsysteme. Ich denke *in Zusammenhängen*, nicht in einzelnen Aufgaben.",
+    "stats": [
+      { "value": "2,5 Jahre", "label": "an einem produktiven Multi-Brand-Shop" },
+      { "value": "100+", "label": "wiederverwendbare UI-Bausteine mitgestaltet" },
+      { "value": "9", "label": "SEO-Vorhaben verantwortet (2024–2026)" },
+      { "value": "30+", "label": "gezielte Performance-Verbesserungen" }
+    ],
     "items": [
-      "Entwicklung und Pflege einer UI-Library",
-      "Vue & Nuxt im produktiven E-Commerce-Einsatz",
-      "Agiles Arbeiten nach Scrum",
-      "CI/CD-Pipelines",
-      "Anleiten und Begleiten von Auszubildenden",
-      "Technische SEO im Frontend"
+      "Shop plus Variante für Direct-Order-Pages",
+      "Mitaufbau einer firmeneigenen UI-Bibliothek, die ein zugekauftes Framework ablöst",
+      "API-Schicht, gemeinsame Bibliotheken & Drop-in-Pakete",
+      "Strapi-CMS",
+      "Technisches SEO: automatische Sitemaps, Meta-Daten & Optimierung für Google Discover",
+      "Spürbar schnellere Ladezeiten durch gezielte Performance-Verbesserungen"
+    ],
+    "educationTitle": "Weiterbildung",
+    "educationSchool": "Developer Akademie",
+    "educationDesc": "Intensive Ausbildung zum Web Developer mit Fokus auf moderne Frontend-Entwicklung."
+  },
+  "voices": {
+    "title": "Was andere sagen",
+    "prev": "Vorheriges Zitat",
+    "next": "Nächstes Zitat",
+    "goTo": "Zu Zitat {n}",
+    "items": [
+      {
+        "text": "Sein ausgeprägtes Auffassungsvermögen, überdurchschnittliches Engagement und hohe Lernbereitschaft, kombiniert mit ausgezeichneter Kommunikationsfähigkeit und der Fähigkeit zum kritischen Hinterfragen, zeichnen ihn aus.",
+        "source": "Zwischenzeugnis, MDM Deutsche Münze, 2024"
+      },
+      {
+        "text": "Alle Aufgaben führt er jederzeit vollkommen selbstständig, äußerst sorgfältig und planvoll durchdacht aus. Er agiert immer ruhig, überlegt, zielorientiert und in höchstem Maße präzise.",
+        "source": "Zwischenzeugnis, MDM Deutsche Münze, 2024"
+      },
+      {
+        "text": "Konrad ist ein außergewöhnlicher Quereinsteiger, dessen Fähigkeit, schnell zu lernen und sich zu entwickeln, mich tief beeindruckt hat.",
+        "source": "Christian Martos Valera, LinkedIn-Empfehlung"
+      },
+      {
+        "text": "Die Entscheidung, Konrad einzustellen, war eine der besten, die ich je getroffen habe, und ich würde sie ohne Zögern wieder treffen.",
+        "source": "Christian Martos Valera, LinkedIn-Empfehlung"
+      },
+      {
+        "text": "Ich kann Konrad ohne Vorbehalt jedem Team oder Unternehmen empfehlen, das Wert auf engagierte, schnelle Lernende und authentische Persönlichkeiten legt.",
+        "source": "Tobias Klemp, LinkedIn-Empfehlung"
+      }
     ]
+  },
+  "ai": {
+    "title": "KI – bewusst gebaut",
+    "body": "Ich setze KI nicht beliebig nebenbei ein, sondern lege bewusst fest, wie sie arbeitet: ein System spezialisierter KI-Agents mit klar dokumentierten Abläufen. Im Job und in eigenen Projekten steuere ich das KI-Tooling gezielt über eigene Konfigurationsdateien.",
+    "note": "KI mit *hohem Hebel* statt blindem Vertrauen.",
+    "tags": ["Agents", "Instructions", "Skills", "Prompts"]
   },
   "tech": {
     "title": "Tech-Stack",
     "note": "Werkzeuge und Technologien, mit denen ich täglich arbeite."
   },
   "projects": {
-    "title": "Projekte",
+    "title": "Was ich baue",
     "viewRepo": "Repository ansehen",
-    "note": "Persönliche Projekte – zum Lernen, Ausprobieren und aus Freude am Bauen.",
+    "note": "Private Projekte – zum Lernen, Ausprobieren und aus Freude am Bauen.",
     "items": {
-      "pokekon": {
-        "name": "Pokekon",
-        "desc": "Persönliches Projekt rund um das Pokémon-Sammelkartenspiel. (Beschreibung anpassen.)"
-      },
       "doewe": {
         "name": "Doewe",
-        "desc": "Plattform zum Erfassen und Auswerten persönlicher Finanzen: Transaktionen, Kategorien, Budgets und Analysen. Monorepo mit starkem Fokus auf Developer Experience."
+        "tagline": "Finanzmanagement für Familien.",
+        "detail": "Plattform zum Erfassen von Ausgaben, Setzen von Budgets und Verfolgen finanzieller Ziele. Full-Stack mit Next.js, TypeScript, Prisma und PostgreSQL – strikt typisiert, mit CI und Tests."
       },
-      "noorc": {
-        "name": "No-orc · El Pollo Loco",
-        "desc": "Ein 2D-Jump-’n’-Run fürs Web, umgesetzt mit objektorientiertem JavaScript und HTML5-Canvas."
+      "pokemeta": {
+        "name": "Pokémon-Meta-Tracker",
+        "tagline": "Karten tracken, Meta verstehen, Decks verbessern.",
+        "detail": "App zum Tracken von Kartenspielen, mit Überblick über die aktuelle Meta und Vorschlägen zur Deck-Verbesserung."
       },
       "waldbingo": {
         "name": "Waldbingo",
-        "desc": "Kleines Web-Projekt rund um ein Bingo für Spaziergänge in der Natur. (In Arbeit – Beschreibung anpassen.)"
+        "tagline": "Dynamisches Familien-Bingo (in Entwicklung).",
+        "detail": "Familien-Bingo mit KI-, wetter- und ortsabhängig generierten Karten – Motivation, rauszugehen und die Umgebung zu entdecken."
       }
     }
   },
-  "education": {
-    "title": "Weiterbildung",
-    "school": "Developer Akademie",
-    "desc": "Intensive Ausbildung zum Web Developer mit Fokus auf moderne Frontend-Entwicklung."
+  "teaching": {
+    "title": "Wissen weitergeben",
+    "lead": "Was ich kann, *gebe ich weiter* – im Team und darüber hinaus.",
+    "items": [
+      "Unserem Auszubildenden das Programmieren beigebracht",
+      "Interne Schulungen zum Programmieren mit KI gehalten",
+      "Gast im Podcast der developAkademie"
+    ],
+    "podcast": "Podcast ansehen"
+  },
+  "about": {
+    "title": "Über mich",
+    "body": "*Softwareentwickler* – aktuell vor allem im Frontend tätig, aber nicht darauf festgelegt. Ich baue Software, die Menschen den Alltag leichter macht, und halte gewachsene E-Commerce-Systeme am Laufen und entwickle sie weiter. Dabei investiere ich bewusst in gute Werkzeuge – auch in die Art, wie ich KI einsetze.",
+    "valuesTitle": "Wichtig ist mir",
+    "values": [
+      "Hinterfragen statt übernehmen",
+      "Dokumentieren statt Wissen horten",
+      "Andere befähigen"
+    ]
   },
   "personal": {
     "title": "Neben dem Code",
-    "items": [
-      "Competitive Pokémon TCG",
-      "Skateboard fahren",
-      "Pizza backen"
-    ]
+    "items": ["Competitive Pokémon TCG", "Skateboard fahren", "Pizza backen"]
   },
   "contact": {
     "title": "Kontakt",
-    "body": "Lust auf einen Austausch? Du erreichst mich am besten hier:",
+    "body": "Lust auf einen Austausch? Schreib mir direkt – ich melde mich zeitnah zurück.",
+    "name": "Name",
+    "emailField": "E-Mail",
+    "message": "Nachricht",
+    "send": "Nachricht senden",
+    "sending": "Wird gesendet …",
+    "success": "Danke! Deine Nachricht ist unterwegs – ich melde mich bald.",
+    "error": "Das hat leider nicht geklappt. Versuch es später noch einmal oder schreib mir auf LinkedIn.",
+    "secondary": "Oder finde mich hier:",
     "email": "E-Mail",
     "linkedin": "LinkedIn",
     "github": "GitHub"

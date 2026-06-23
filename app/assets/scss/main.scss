@@ -1,17 +1,27 @@
 /* ── Warm / Editorial theme ───────────────────────────────── */
 
 :root {
-  --bg: #faf7f1;
-  --bg-soft: #f3ecdf;
-  --surface: #fffdf9;
-  --text: #2c2722;
-  --text-soft: #6f665b;
-  --line: #e6ddcd;
-  --accent: #b15c39;
+  --bg: #fbf8f2;
+  --bg-soft: #f4ede0;
+  --surface: #fffefb;
+  --text: #423a31;
+  --text-soft: #786d5f;
+  --line: #ebe2d3;
+  --accent: #c2643f;
+  --accent-soft: #d98c66;
   --accent-ink: #fffaf4;
 
   --max: 720px;
   --gap: clamp(3.5rem, 9vw, 6rem);
+
+  /* Breite der fixierten vertikalen Sidebar (erst ab Desktop, siehe unten). */
+  --sidebar-w: 248px;
+
+  /* Textmarker-Highlight: warmer Akzent-Schleier – auffällig, aber nicht deckend. */
+  --mark: color-mix(in srgb, var(--accent) 26%, transparent);
+
+  /* Kleiner, einheitlicher Delay für In-View-Animationen (Marker + Bilder). */
+  --reveal-delay: 0.45s;
 
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
     Georgia, "Times New Roman", serif;
@@ -19,17 +29,17 @@
     Arial, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1a1714;
-    --bg-soft: #221d18;
-    --surface: #211c17;
-    --text: #ece3d6;
-    --text-soft: #a89c8b;
-    --line: #352d24;
-    --accent: #db8a63;
-    --accent-ink: #1a1714;
-  }
+[data-theme='dark'] {
+  --bg: #1a1714;
+  --bg-soft: #221d18;
+  --surface: #211c17;
+  --text: #ece3d6;
+  --text-soft: #a89c8b;
+  --line: #352d24;
+  --accent: #e0926d;
+  --accent-soft: #b9663f;
+  --accent-ink: #1a1714;
+  --mark: color-mix(in srgb, var(--accent) 32%, transparent);
 }
 
 * {
@@ -99,8 +109,43 @@ ul {
 }
 
 .section {
+  position: relative;
+  overflow: hidden;
   padding-block: var(--gap);
   border-top: 1px solid var(--line);
+}
+
+/* Inhalt liegt über den dekorativen Hintergrund-Motiven. */
+.section > .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ab Desktop räumt die fixierte Sidebar-Navigation links Platz frei.
+   Die Sektionen werden breiter (Karten/Kennzahlen jeweils in einer Reihe),
+   sitzen mit knapperem Innenrand näher an der Navigation und sind im
+   verbleibenden Raum zentriert. */
+@media (min-width: 1024px) {
+  :root {
+    --max: 1080px;
+    /* Weniger vertikales Polster zwischen den Sektionen. */
+    --gap: clamp(3rem, 6vw, 4.5rem);
+  }
+  /* Die Navigation liegt fix in der linken Spalte. Ein gleich breites Polster
+     rechts zentriert den Inhalt im verbleibenden Raum, statt ihn (wie zuvor mit
+     einseitigem padding-left) nach rechts zu schieben. */
+  #main {
+    padding-inline: var(--sidebar-w);
+  }
+  /* Knapperer Innenrand: rückt den Inhalt dichter an die Nav-Überschrift. */
+  .wrap {
+    padding-inline: clamp(1.5rem, 3vw, 2.25rem);
+  }
+  /* Keine trennenden Linien auf Desktop – die Sidebar ist die Navigation,
+     die Sektionen gliedern sich über Weißraum statt über Divider. */
+  .section {
+    border-top: none;
+  }
 }
 
 .section__label {
@@ -128,11 +173,127 @@ ul {
   top: 0.5rem;
 }
 
+/* ── Dezente Effekte: Reveal & 1-line art ─────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Textmarker: ein leicht schräger, an den Enden auslaufender Stiftstrich. Wird –
+   minimal verzögert – in einem zügigen Zug über das Wort gezogen, sobald das Wort
+   selbst in den Viewport kommt (Klasse .is-marked via v-mark-view), so als markiere
+   man frisch mit einem Stift. Fängt das Auge, ohne zu dick aufzutragen. */
+mark {
+  background-color: transparent;
+  background-image: linear-gradient(
+    101deg,
+    transparent 0.5%,
+    var(--mark) 2%,
+    var(--mark) 97%,
+    transparent 99.5%
+  );
+  background-repeat: no-repeat;
+  background-position: 0 0.12em;
+  background-size: 0% 72%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding: 0 0.14em;
+  color: inherit;
+  /* Schneller Ansatz, weiches Auslaufen – wie ein einzelner Stiftzug.
+     Verzögerung wartet kurz, bis das Wort im Blick steht. */
+  transition: background-size 0.75s cubic-bezier(0.75, 0.02, 0.3, 1) var(--reveal-delay);
+}
+
+mark.is-marked {
+  background-size: 100% 72%;
+}
+
+/* Reveal-Kinder leicht zeitversetzt, für ruhige Staffelung */
+.reveal--stagger > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal--stagger.is-visible > * {
+  opacity: 1;
+  transform: none;
+}
+
+@for $i from 1 through 6 {
+  .reveal--stagger.is-visible > *:nth-child(#{$i}) {
+    transition-delay: #{$i * 0.08}s;
+  }
+}
+
+/* Monoline-Grafiken */
+.lineart {
+  width: 100%;
+  height: 100%;
+  display: block;
+  stroke: var(--accent);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
+}
+
+.draw .lineart > * {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+}
+
+.draw.is-visible .lineart > * {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.3s ease;
+}
+
+/* In-View getriebene 1-line art: zeichnet sich zeitbasiert, sobald die Sektion
+   erreicht ist (Klasse .is-drawn via v-draw-view). pathLength="1" normiert jede
+   Form; die Segmente zeichnen leicht versetzt, damit die Linie „verspielt“ fließt. */
+.draw-view .lineart :is(path, circle, line, polyline, rect, ellipse) {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.draw-view.is-drawn .lineart :is(path, circle, line, polyline, rect, ellipse) {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.1s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@for $i from 1 through 12 {
+  .draw-view.is-drawn .lineart > *:nth-child(#{$i}) {
+    /* Grund-Verzögerung, bevor sich die Hintergrund-Grafik zu zeichnen beginnt. */
+    transition-delay: #{0.4 + ($i - 1) * 0.16}s;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
   * {
     transition: none !important;
+  }
+  .reveal,
+  .reveal--stagger > * {
+    opacity: 1;
+    transform: none;
+  }
+  .draw .lineart > * {
+    stroke-dashoffset: 0;
+  }
+  .draw-view .lineart :is(path, circle, line, polyline, rect, ellipse) {
+    stroke-dashoffset: 0;
+  }
+  mark {
+    background-size: 100% 100%;
   }
 }
