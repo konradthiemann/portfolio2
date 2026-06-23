@@ -133,7 +133,8 @@ async function submit() {
   font: inherit;
   font-size: 0.98rem;
   color: var(--text);
-  background: var(--surface);
+  /* Durchscheinend, damit der Papierflieger im Hintergrund leicht durchschimmert. */
+  background: color-mix(in srgb, var(--surface) 62%, transparent);
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 0.7rem 0.9rem;

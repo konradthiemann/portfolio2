@@ -16,7 +16,8 @@
     "switchLang": "Switch language",
     "toggleTheme": "Toggle light/dark mode",
     "expand": "Show and hide details",
-    "toContact": "Jump to contact form"
+    "toContact": "Jump to contact form",
+    "menu": "Open and close menu"
   },
   "hero": {
     "role": "Software Engineer",

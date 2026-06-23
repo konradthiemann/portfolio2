@@ -10,9 +10,19 @@ const nav = [
   { key: 'contact', id: 'contact' },
 ]
 
+// Burger-Menü (nur mobil): Sichtbarkeit der Navigation + Spracheinstellung.
+const menuOpen = ref(false)
+function closeMenu() {
+  menuOpen.value = false
+}
+
 // Scroll-Spy: hebt im Menü die Section hervor, die gerade im Blick ist.
 const activeId = ref('')
 let observer: IntersectionObserver | null = null
+
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape') closeMenu()
+}
 
 onMounted(() => {
   const ids = nav.map((n) => n.id)
@@ -34,29 +44,49 @@ onMounted(() => {
     const el = document.getElementById(id)
     if (el) observer.observe(el)
   }
+  window.addEventListener('keydown', onKeydown)
 })
 
-onBeforeUnmount(() => observer?.disconnect())
+onBeforeUnmount(() => {
+  observer?.disconnect()
+  window.removeEventListener('keydown', onKeydown)
+})
 </script>
 
 <template>
   <header class="hdr">
     <div class="wrap hdr__inner">
-      <nav class="hdr__nav" aria-label="Sections">
-        <a
-          v-for="item in nav"
-          :key="item.key"
-          :href="`#${item.id}`"
-          :class="{ 'is-active': activeId === item.id }"
-          :aria-current="activeId === item.id ? 'true' : undefined"
-        >
-          {{ t(`nav.${item.key}`) }}
-        </a>
-      </nav>
+      <!-- Burger nur mobil, wenn der Platz für Menüpunkte + Sprache knapp wird. -->
+      <button
+        class="hdr__burger"
+        type="button"
+        :aria-expanded="menuOpen"
+        :aria-label="t('a11y.menu')"
+        @click="menuOpen = !menuOpen"
+      >
+        <span class="hdr__burger-box" :class="{ 'is-open': menuOpen }">
+          <span></span><span></span><span></span>
+        </span>
+      </button>
 
-      <div class="hdr__actions">
-        <LangSwitch />
-        <ThemeToggle v-if="features.darkMode" />
+      <div class="hdr__menu" :class="{ 'is-open': menuOpen }">
+        <nav class="hdr__nav" aria-label="Sections">
+          <a
+            v-for="item in nav"
+            :key="item.key"
+            :href="`#${item.id}`"
+            :class="{ 'is-active': activeId === item.id }"
+            :aria-current="activeId === item.id ? 'true' : undefined"
+            @click="closeMenu"
+          >
+            {{ t(`nav.${item.key}`) }}
+          </a>
+        </nav>
+
+        <div class="hdr__actions">
+          <LangSwitch />
+          <ThemeToggle v-if="features.darkMode" />
+        </div>
       </div>
     </div>
   </header>
@@ -85,11 +115,82 @@ onBeforeUnmount(() => observer?.disconnect())
   gap: 1rem;
 }
 
-.hdr__nav {
-  display: none;
-  gap: 1.4rem;
+/* ── Mobil: Burger-Toggle + ausklappbares Menü ─────────────── */
+.hdr__burger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-left: auto;
-  font-size: 0.92rem;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.hdr__burger-box {
+  position: relative;
+  width: 22px;
+  height: 14px;
+
+  span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.3s ease, opacity 0.2s ease, top 0.3s ease;
+  }
+
+  span:nth-child(1) {
+    top: 0;
+  }
+  span:nth-child(2) {
+    top: 6px;
+  }
+  span:nth-child(3) {
+    top: 12px;
+  }
+
+  &.is-open span:nth-child(1) {
+    top: 6px;
+    transform: rotate(45deg);
+  }
+  &.is-open span:nth-child(2) {
+    opacity: 0;
+  }
+  &.is-open span:nth-child(3) {
+    top: 6px;
+    transform: rotate(-45deg);
+  }
+}
+
+/* Ausklapp-Panel unter der Leiste. */
+.hdr__menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.25rem clamp(1.5rem, 3vw, 2.25rem) 1.5rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.hdr__menu.is-open {
+  display: flex;
+}
+
+.hdr__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 1rem;
 
   a {
     text-decoration: none;
@@ -101,10 +202,24 @@ onBeforeUnmount(() => observer?.disconnect())
   }
 }
 
-/* Tablet: horizontales Menü oben einblenden */
+/* Tablet: genug Platz → Burger weg, Menü inline in der Leiste. */
 @media (min-width: 620px) {
+  .hdr__burger {
+    display: none;
+  }
+
+  /* display:contents → nav + actions liegen wieder direkt im .hdr__inner-Flex.
+     Auch bei is-open (mobil offen gelassen), daher beide Selektoren. */
+  .hdr__menu,
+  .hdr__menu.is-open {
+    display: contents;
+  }
+
   .hdr__nav {
-    display: flex;
+    flex-direction: row;
+    gap: 1.4rem;
+    margin-left: auto;
+    font-size: 0.92rem;
   }
 }
 

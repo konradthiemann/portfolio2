@@ -386,7 +386,9 @@ const contacts = computed(() => {
 
   <!-- Contact -->
   <section id="contact" class="section">
-    <SectionArt motif="contact" side="right" />
+    <!-- Motiv bewusst tiefer, etwa auf Höhe des Formulars (Papierflieger schimmert
+         hinter den Eingabefeldern durch). -->
+    <SectionArt motif="contact" side="right" :style="{ '--art-y': 'clamp(26rem, 55vh, 42rem)' }" />
     <div v-reveal class="wrap reveal">
       <p class="section__label">{{ t('contact.title') }}</p>
       <p class="lead">{{ t('contact.body') }}</p>
@@ -632,8 +634,16 @@ const contacts = computed(() => {
 /* USP- / Soft-Skill-Karten. Doppelte Klasse (.grid.grid--cards), damit diese
    Spaltenangabe die generische .grid-Regel sicher übersteuert. */
 .grid.grid--cards {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* Nie 3 + 1: nur 1 (4×1), 2 (2×2) oder 4 (1×4) Spalten. */
+  grid-template-columns: 1fr;
   margin-top: 1.75rem;
+}
+
+/* Tablet: 2×2. */
+@media (min-width: 560px) {
+  .grid.grid--cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Desktop: die vier Arbeitsweise-Karten bewusst in einer Reihe. */
@@ -726,7 +736,9 @@ const contacts = computed(() => {
   flex: 0 0 calc((100% - (var(--per-view) - 1) * 1rem) / var(--per-view));
   margin: 0;
   padding: 1.75rem 1.75rem 1.75rem 1.85rem;
-  background: var(--surface);
+  /* Leicht durchscheinend, damit das zentrierte Hintergrund-Motiv dezent
+     hindurchschimmert, ohne vom Zitat abzulenken. */
+  background: color-mix(in srgb, var(--surface) 68%, transparent);
   border: 1px solid var(--line);
   border-left: 2px solid var(--accent);
   border-radius: 12px;
@@ -903,12 +915,26 @@ const contacts = computed(() => {
   display: grid;
   gap: 1rem;
   margin-top: 1.75rem;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  /* Nie 3 + 1: nur 1 (4×1), 2 (2×2) oder 4 (1×4) Spalten. */
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 560px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .stat {
   padding: 1.3rem 1.35rem;
-  background: var(--surface);
+  /* Durchscheinend, damit das zentrierte Hintergrund-Motiv dezent sichtbar ist. */
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
   border: 1px solid var(--line);
   border-top: 2px solid var(--accent);
   border-radius: 12px;
@@ -972,6 +998,12 @@ const contacts = computed(() => {
   gap: 1rem;
   margin-top: 1.75rem;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* Projekte: nie 2 + 1. Unterhalb des Akkordeons (≥1350px) immer 1 Spalte (3×1),
+   ab 1350px wird daraus das horizontale 1×3-Akkordeon (siehe unten). */
+.grid--projects {
+  grid-template-columns: 1fr;
 }
 
 /* Projekt-Raster auf breiten Viewports (ab ~1350px): horizontales Akkordeon in

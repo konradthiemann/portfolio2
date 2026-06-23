@@ -29,7 +29,7 @@ withDefaults(
    Aufklappen einer Projekt-Kachel). Horizontal weiter mittig, leicht versetzt. */
 .section-art {
   --art-w: clamp(340px, 56vw, 700px);
-  --art-y: clamp(11rem, 24vh, 18rem);
+  --art-y: clamp(16rem, 32vh, 24rem);
   position: absolute;
   top: var(--art-y);
   left: 50%;
@@ -45,25 +45,18 @@ withDefaults(
   }
 }
 
-/* Desktop: deutlich in den seitlichen Whitespace versetzt (überlappt weiterhin). */
-.section-art--left {
-  transform: translate(calc(-50% - clamp(150px, 28vw, 460px)), -50%);
-}
-
+/* Auf allen Viewports horizontal zentriert hinter dem Text (side-Prop steuert
+   nur noch das Motiv-Layout in der Sektion, nicht mehr den Versatz). */
+.section-art--left,
 .section-art--right {
-  transform: translate(calc(-50% + clamp(150px, 28vw, 460px)), -50%);
+  transform: translate(-50%, -50%);
 }
 
-/* Auf schmalen Viewports zentriert hinter dem Text. */
+/* Auf schmalen Viewports etwas kleiner/dezenter. */
 @media (max-width: 767px) {
   .section-art {
     --art-w: clamp(280px, 88vw, 460px);
     opacity: 0.06;
-  }
-
-  .section-art--left,
-  .section-art--right {
-    transform: translate(-50%, -50%);
   }
 }
 
