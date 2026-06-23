@@ -1,91 +1,170 @@
 {
   "meta": {
-    "title": "Konrad Thiemann · Frontend Developer",
-    "description": "Frontend developer focused on Vue, Nuxt and lean, functional interfaces. E-commerce, UI libraries and AI-assisted development."
+    "title": "Konrad Thiemann · Software Engineer",
+    "description": "Software engineer focused on frontend. I build considered, lean and documented solutions – in production e-commerce and my own projects, with AI as a deliberately built tool."
   },
   "nav": {
-    "about": "About",
-    "experience": "Experience",
-    "tech": "Stack",
+    "home": "Home",
+    "approach": "Approach",
+    "experience": "Ownership",
     "projects": "Projects",
+    "voices": "Voices",
     "contact": "Contact"
   },
   "a11y": {
     "skip": "Skip to content",
-    "switchLang": "Switch language"
+    "switchLang": "Switch language",
+    "toggleTheme": "Toggle light/dark mode",
+    "expand": "Show and hide details",
+    "toContact": "Jump to contact form"
   },
   "hero": {
-    "role": "Frontend Developer",
-    "tagline": "Functional, not bloated.",
-    "intro": "I build frontends that focus on what matters – with Vue and Nuxt, a soft spot for minimalism, and AI as an everyday tool."
+    "role": "Software Engineer",
+    "tagline": "A software engineer who builds deliberately.",
+    "intro": "I build things that make people's lives easier – and in a way a team can build on: considered, lean, documented. I use frameworks and AI as a deliberate choice, not out of habit.",
+    "ctaPrimary": "Get in touch",
+    "ctaSecondary": "View projects"
   },
-  "about": {
-    "title": "About me",
-    "body": "I'm a frontend developer maintaining and evolving an e-commerce shop frontend. I love reduced design that still does everything it should – and continuous learning, ideally with AI as a sparring partner.",
-    "valuesTitle": "What drives me",
-    "values": [
-      "Minimalism – functional, not bloated",
-      "Programming with AI",
-      "Learning & growth",
-      "Structure & organisation"
-    ]
+  "approach": {
+    "title": "How I work",
+    "lead": "*Show, don't claim* – four principles.",
+    "items": [
+      {
+        "title": "I question before I build.",
+        "desc": "Before adopting a solution, I check whether it really fits the problem. That's how I came to shape 100+ UI building blocks of an in-house library that replaces a third-party framework – leaner and faster."
+      },
+      {
+        "title": "I build purpose-fit, not bloated.",
+        "desc": "Lean, targeted solutions over universal heavyweights: fewer dependencies, clearer responsibilities, better performance."
+      },
+      {
+        "title": "Quality is built in – and lived.",
+        "desc": "Automated quality gates (lint → typecheck → test → build) and traceable commits – so a team can keep building fast and safely."
+      },
+      {
+        "title": "I enable others.",
+        "desc": "Apprentice, intern or team – I share knowledge instead of hoarding it. Including how to use AI sensibly in everyday development."
+      }
+    ],
+    "ctaNote": "Sounds like a match?",
+    "ctaButton": "Let's talk"
   },
   "experience": {
-    "title": "Experience",
-    "roleTitle": "Frontend Developer",
-    "roleSummary": "Maintaining and evolving the shop frontend.",
+    "title": "What I own at work",
+    "lead": "For over 2.5 years I've worked on the frontend of a multi-brand e-commerce system. I look after not just the shop but the system around it – across eight subsystems. I think *in connections*, not isolated tasks.",
+    "stats": [
+      { "value": "2.5 yrs", "label": "on a production multi-brand shop" },
+      { "value": "100+", "label": "reusable UI building blocks shaped" },
+      { "value": "9", "label": "technical-SEO initiatives owned (2024–2026)" },
+      { "value": "30+", "label": "targeted performance improvements" }
+    ],
     "items": [
-      "Building and maintaining a UI library",
-      "Vue & Nuxt in production e-commerce",
-      "Agile work with Scrum",
-      "CI/CD pipelines",
-      "Mentoring and guiding apprentices",
-      "Technical SEO in the frontend"
+      "Shop plus a direct-order-pages variant",
+      "Helped build a custom UI library that replaces a third-party framework",
+      "API layer, shared libraries & drop-in packages",
+      "Strapi CMS",
+      "Technical SEO: automated sitemaps, meta data & Google Discover optimisation",
+      "Noticeably faster load times through targeted performance work"
+    ],
+    "educationTitle": "Education",
+    "educationSchool": "Developer Akademie",
+    "educationDesc": "Intensive web developer training focused on modern frontend development."
+  },
+  "voices": {
+    "title": "What others say",
+    "prev": "Previous quote",
+    "next": "Next quote",
+    "goTo": "Go to quote {n}",
+    "items": [
+      {
+        "text": "His keen grasp of new topics, above-average commitment and strong willingness to learn – combined with excellent communication skills and the ability to think critically – set him apart.",
+        "source": "Interim reference, MDM Deutsche Münze, 2024"
+      },
+      {
+        "text": "He carries out all tasks entirely independently, with great care and thorough planning. He always acts calmly, thoughtfully, with focus and the utmost precision.",
+        "source": "Interim reference, MDM Deutsche Münze, 2024"
+      },
+      {
+        "text": "Konrad is an exceptional career changer, whose ability to learn and grow quickly impressed me deeply.",
+        "source": "Christian Martos Valera, LinkedIn recommendation"
+      },
+      {
+        "text": "The decision to hire Konrad was one of the best I have ever made, and I would make it again without hesitation.",
+        "source": "Christian Martos Valera, LinkedIn recommendation"
+      },
+      {
+        "text": "I can recommend Konrad without reservation to any team or company that values committed, fast learners and authentic personalities.",
+        "source": "Tobias Klemp, LinkedIn recommendation"
+      }
     ]
+  },
+  "ai": {
+    "title": "AI – deliberately built",
+    "body": "I don't reach for AI at random – I deliberately define how it works: a system of specialised AI agents with clearly documented workflows. At work and in my own projects I steer the AI tooling through dedicated configuration files.",
+    "note": "AI with *high leverage*, not blind trust.",
+    "tags": ["Agents", "Instructions", "Skills", "Prompts"]
   },
   "tech": {
     "title": "Tech stack",
     "note": "Tools and technologies I work with every day."
   },
   "projects": {
-    "title": "Projects",
+    "title": "What I build",
     "viewRepo": "View repository",
     "note": "Personal projects – for learning, experimenting and the joy of building.",
     "items": {
-      "pokekon": {
-        "name": "Pokekon",
-        "desc": "A personal project around the Pokémon Trading Card Game. (Description to be refined.)"
-      },
       "doewe": {
         "name": "Doewe",
-        "desc": "A platform for tracking and analysing personal finances: transactions, categories, budgets and insights. A monorepo with a strong focus on developer experience."
+        "tagline": "Finance management for families.",
+        "detail": "A platform for logging expenses, setting budgets and tracking financial goals. Full-stack with Next.js, TypeScript, Prisma and PostgreSQL – strictly typed, with CI and tests."
       },
-      "noorc": {
-        "name": "No-orc · El Pollo Loco",
-        "desc": "A 2D jump-’n’-run for the web, built with object-oriented JavaScript and the HTML5 canvas."
+      "pokemeta": {
+        "name": "Pokémon Meta Tracker",
+        "tagline": "Track games, understand the meta, improve decks.",
+        "detail": "An app for tracking card games, with an overview of the current meta and suggestions to improve your deck."
       },
       "waldbingo": {
         "name": "Waldbingo",
-        "desc": "A small web project around a bingo game for nature walks. (Work in progress – description to be refined.)"
+        "tagline": "Dynamic family bingo (in progress).",
+        "detail": "Family bingo with cards generated based on AI, weather and location – motivation to head outside and explore your surroundings."
       }
     }
   },
-  "education": {
-    "title": "Education",
-    "school": "Developer Akademie",
-    "desc": "Intensive web developer training focused on modern frontend development."
+  "teaching": {
+    "title": "Sharing knowledge",
+    "lead": "What I know, *I pass on* – within the team and beyond.",
+    "items": [
+      "Taught our apprentice how to code",
+      "Ran internal trainings on programming with AI",
+      "Guest on the developAkademie podcast"
+    ],
+    "podcast": "Watch the podcast"
+  },
+  "about": {
+    "title": "About me",
+    "body": "*Software engineer* – currently working mainly in frontend, but not defined by it. I build software that makes people's lives easier, and I keep mature e-commerce systems running and evolving. I deliberately invest in good tools – including the way I use AI.",
+    "valuesTitle": "What matters to me",
+    "values": [
+      "Question rather than adopt",
+      "Document rather than hoard knowledge",
+      "Enable others"
+    ]
   },
   "personal": {
     "title": "Beyond code",
-    "items": [
-      "Competitive Pokémon TCG",
-      "Skateboarding",
-      "Baking pizza"
-    ]
+    "items": ["Competitive Pokémon TCG", "Skateboarding", "Baking pizza"]
   },
   "contact": {
     "title": "Contact",
-    "body": "Want to get in touch? Here's where to find me:",
+    "body": "Fancy a chat? Drop me a line directly – I'll get back to you soon.",
+    "name": "Name",
+    "emailField": "Email",
+    "message": "Message",
+    "send": "Send message",
+    "sending": "Sending …",
+    "success": "Thank you! Your message is on its way – I'll be in touch soon.",
+    "error": "That didn't work, unfortunately. Please try again later or reach me on LinkedIn.",
+    "secondary": "Or find me here:",
     "email": "Email",
     "linkedin": "LinkedIn",
     "github": "GitHub"

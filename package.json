@@ -10,12 +10,14 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "nodemailer": "^9.0.0",
     "nuxt": "latest",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
     "@nuxtjs/i18n": "latest",
+    "@types/nodemailer": "^8.0.1",
     "sass": "latest"
   }
 }
