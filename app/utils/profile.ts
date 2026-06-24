@@ -4,7 +4,10 @@
 export interface Project {
   /** i18n-Key unter `projects.items.<slug>` */
   slug: string
+  /** Repository (GitHub). */
   url: string
+  /** Optionaler Link zur deployten App. Fehlt das Feld, zeigt die Karte nur den Repo-Link. */
+  liveUrl?: string
   stack: string[]
   /** Optionales Vorschaubild (in /public/projects). WebP + JPG-Fallback;
      nur `webp` angeben, der JPG-Pfad wird daraus abgeleitet. Fehlt das Feld,
@@ -66,19 +69,23 @@ export const profile = {
     {
       slug: 'doewe',
       url: 'https://github.com/konradthiemann/Doewe',
+      liveUrl: 'https://doewe.konradthiemann.de',
       stack: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL'],
       image: { webp: '/projects/doewe.webp', jpg: '/projects/doewe.jpg' },
     },
     {
       slug: 'pokemeta',
       url: 'https://github.com/konradthiemann/Pokekon',
+      liveUrl: 'https://pokekon.konradthiemann.de',
       stack: ['Vue', 'TypeScript'],
       image: { webp: '/projects/pokemeta.webp', jpg: '/projects/pokemeta.jpg' },
     },
     {
       slug: 'waldbingo',
       url: 'https://github.com/konradthiemann/Waldbingo',
+      liveUrl: 'https://waldbingo.konradthiemann.de',
       stack: ['Nuxt', 'KI'],
+      image: { webp: '/projects/waldbingo.webp', jpg: '/projects/waldbingo.jpg' },
     },
   ],
 }

@@ -18,6 +18,9 @@ logs
 !.env.example
 docs
 
+# Vertrauliche Notizen – gehören nicht ins öffentliche Repo
+/Portfolio-Zahlen_Konrad.md
+
 # Editor / tooling caches
 .cache
 .vite

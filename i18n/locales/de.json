@@ -111,6 +111,7 @@
   },
   "projects": {
     "title": "Was ich baue",
+    "viewLive": "Live ansehen",
     "viewRepo": "Repository ansehen",
     "note": "Private Projekte – zum Lernen, Ausprobieren und aus Freude am Bauen.",
     "items": {
