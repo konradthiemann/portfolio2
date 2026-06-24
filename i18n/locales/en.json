@@ -111,6 +111,7 @@
   },
   "projects": {
     "title": "What I build",
+    "viewLive": "View live",
     "viewRepo": "View repository",
     "note": "Personal projects – for learning, experimenting and the joy of building.",
     "items": {

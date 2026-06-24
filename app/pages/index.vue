@@ -278,6 +278,7 @@ const contacts = computed(() => {
           :tagline="t(`projects.items.${p.slug}.tagline`)"
           :detail="t(`projects.items.${p.slug}.detail`)"
           :cta="t('projects.viewRepo')"
+          :live-cta="t('projects.viewLive')"
           :expand-label="t('a11y.expand')"
           :open="openProject === p.slug"
           @toggle="toggleProject(p.slug)"

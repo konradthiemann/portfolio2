@@ -7,6 +7,7 @@ defineProps<{
   tagline: string
   detail: string
   cta: string
+  liveCta: string
   expandLabel: string
   open: boolean
 }>()
@@ -66,15 +67,27 @@ defineEmits<{ toggle: [] }>()
               <li v-for="tech in project.stack" :key="tech">{{ tech }}</li>
             </ul>
 
-            <a
-              class="card__link"
-              :href="project.url"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {{ cta }}
-              <span aria-hidden="true">↗</span>
-            </a>
+            <div class="card__links">
+              <a
+                v-if="project.liveUrl"
+                class="card__link"
+                :href="project.liveUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ liveCta }}
+                <span aria-hidden="true">↗</span>
+              </a>
+              <a
+                class="card__link card__link--repo"
+                :href="project.url"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ cta }}
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -223,33 +236,27 @@ defineEmits<{ toggle: [] }>()
 }
 
 /* Projekt-Vorschau: Screenshot der deployten App, erst im aufgeklappten
-   Zustand sichtbar. Die Hochkant-Screenshots werden landschaftlich
-   beschnitten (object-fit), die Position zeigt den App-Kopf und blendet
-   Status-/Browserleiste aus. */
+   Zustand sichtbar. Der Hochkant-Screenshot wird VOLLSTÄNDIG gezeigt (kein
+   Beschnitt) – als kompaktes Phone-Mockup mit begrenzter Breite, damit es
+   nicht überladen wirkt. Auf Mobil (gestapelt) wird es zentriert. */
 .card__cover {
-  aspect-ratio: 16 / 10;
+  max-width: 210px;
+  margin: 0 auto 1rem;
   overflow: hidden;
   background: var(--bg-soft);
   border: 1px solid var(--line);
-  border-radius: 10px;
-  margin-bottom: 1rem;
+  border-radius: 12px;
 
   picture,
   img {
     display: block;
     width: 100%;
-    height: 100%;
   }
 
+  /* Natürliche Höhe aus den 900×1947-Maßen → volles Bild, keine Verzerrung. */
   img {
-    object-fit: cover;
-    object-position: center 7%;
-    transition: transform 0.4s ease;
+    height: auto;
   }
-}
-
-.card.is-open .card__cover img {
-  transform: scale(1.03);
 }
 
 .card__head {
@@ -351,13 +358,16 @@ defineEmits<{ toggle: [] }>()
 @media (min-width: 700px) {
   .card__inner:has(.card__cover) {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 1.5rem;
+    /* Bildspalte hugt die Phone-Breite (210px), der Text bekommt den Rest. */
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1.75rem;
     align-items: start;
   }
 
+  /* In der 2-Spalten-Ansicht links bündig (kein auto-Zentrieren, kein
+     Bottom-Margin). */
   .card__cover {
-    margin-bottom: 0;
+    margin: 0;
   }
 }
 
@@ -384,6 +394,12 @@ defineEmits<{ toggle: [] }>()
   }
 }
 
+.card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+}
+
 .card__link {
   font-size: 0.9rem;
   font-weight: 600;
@@ -391,6 +407,12 @@ defineEmits<{ toggle: [] }>()
   color: var(--accent);
   display: inline-flex;
   gap: 0.3rem;
+}
+
+/* Repository als sekundärer Link – dezenter als der primäre „Live ansehen" */
+.card__link--repo {
+  font-weight: 500;
+  color: var(--text-soft);
 }
 
 @media (prefers-reduced-motion: reduce) {
