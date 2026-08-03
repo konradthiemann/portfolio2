@@ -21,6 +21,9 @@ docs
 # Vertrauliche Notizen – gehören nicht ins öffentliche Repo
 /Portfolio-Zahlen_Konrad.md
 
+# Rohe Simulator-Screenshots (Quellmaterial für /public/projects-Cover, nicht ins Repo)
+assets/Simulator Screen Shot*.png
+
 # Editor / tooling caches
 .cache
 .vite
