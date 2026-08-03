@@ -7,13 +7,13 @@ export default defineNuxtConfig({
 
   css: ['~/assets/scss/main.scss'],
 
-  // Serverseitige Secrets – via Umgebungsvariablen überschreiben:
-  // NUXT_SMTP_USER, NUXT_SMTP_PASS, NUXT_CONTACT_TO
+  // Serverseitige Secrets – via Umgebungsvariablen überschreiben.
+  // Kontaktformular versendet via Resend (HTTPS-API; funktioniert auf allen
+  // Railway-Plänen, anders als SMTP). Überschreiben mit:
+  // NUXT_RESEND_API_KEY, NUXT_RESEND_FROM, NUXT_CONTACT_TO
   runtimeConfig: {
-    smtpHost: 'smtp.gmail.com',
-    smtpPort: '465',
-    smtpUser: '',
-    smtpPass: '',
+    resendApiKey: '',
+    resendFrom: 'Portfolio Kontakt <onboarding@resend.dev>',
     contactTo: 'konrad.thiemann@gmail.com',
   },
 
