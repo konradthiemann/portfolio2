@@ -6,7 +6,7 @@ Minimalistisches Portfolio (warm/editorial), gebaut mit **Nuxt 4**, **Vue**, **T
 
 - [Nuxt 4](https://nuxt.com) · Vue 3 · TypeScript
 - [@nuxtjs/i18n](https://i18n.nuxtjs.org) — Strategie `prefix`, Standard `de`
-- SCSS + CSS-Custom-Properties (inkl. automatischem Dark-Mode via `prefers-color-scheme`)
+- SCSS + CSS-Custom-Properties (Dark-Mode ist vorbereitet, aktuell aber per Feature-Flag `features.darkMode` in [`app/utils/profile.ts`](app/utils/profile.ts) deaktiviert)
 
 ## Setup
 
@@ -40,3 +40,8 @@ app/
   utils/profile.ts     # Statische Profildaten
 i18n/locales/          # de.json, en.json
 ```
+
+## Lizenz
+
+[MIT](LICENSE) © 2026 Konrad Thiemann
+
