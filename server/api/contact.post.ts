@@ -1,4 +1,7 @@
-import nodemailer from 'nodemailer'
+// Kontaktformular-Versand via Resend (HTTPS-API).
+// Railway blockiert ausgehendes SMTP auf Nicht-Pro-Plänen – die HTTPS-API
+// funktioniert dagegen auf jedem Plan. Konfiguration in nuxt.config.ts /
+// .env: NUXT_RESEND_API_KEY, NUXT_RESEND_FROM, NUXT_CONTACT_TO.
 
 interface ContactBody {
   name?: string
@@ -33,29 +36,27 @@ export default defineEventHandler(async (event) => {
 
   const config = useRuntimeConfig()
 
-  if (!config.smtpUser || !config.smtpPass) {
-    console.error('[contact] SMTP-Zugangsdaten fehlen (NUXT_SMTP_USER / NUXT_SMTP_PASS).')
+  if (!config.resendApiKey) {
+    console.error('[contact] Resend-API-Key fehlt (NUXT_RESEND_API_KEY).')
     throw createError({ statusCode: 500, statusMessage: 'mail_not_configured' })
   }
 
-  const transporter = nodemailer.createTransport({
-    host: config.smtpHost,
-    port: Number(config.smtpPort),
-    secure: Number(config.smtpPort) === 465,
-    auth: { user: config.smtpUser, pass: config.smtpPass },
-  })
-
   try {
-    await transporter.sendMail({
-      // Gmail verlangt, dass "from" der authentifizierte Account ist.
-      from: `"Portfolio Kontakt" <${config.smtpUser}>`,
-      to: config.contactTo,
-      replyTo: `"${name}" <${email}>`,
-      subject: `Portfolio-Kontakt von ${name}`,
-      text: `Name: ${name}\nE-Mail: ${email}\n\n${message}`,
+    await $fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${config.resendApiKey}` },
+      // Kurzer Timeout: bei Problemen schnell scheitern statt die Anfrage hängen zu lassen.
+      timeout: 10000,
+      body: {
+        from: config.resendFrom,
+        to: config.contactTo,
+        reply_to: email,
+        subject: `Portfolio-Kontakt von ${name}`,
+        text: `Name: ${name}\nE-Mail: ${email}\n\n${message}`,
+      },
     })
   } catch (err) {
-    console.error('[contact] Versand fehlgeschlagen:', err)
+    console.error('[contact] Versand via Resend fehlgeschlagen:', err)
     throw createError({ statusCode: 502, statusMessage: 'mail_failed' })
   }
 
