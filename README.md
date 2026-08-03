@@ -10,12 +10,16 @@ Minimalistisches Portfolio (warm/editorial), gebaut mit **Nuxt 4**, **Vue**, **T
 
 ## Setup
 
+> **Voraussetzung:** Node ≥ 20 (getestet mit Node 22) — Nuxt 4 läuft nicht mehr unter Node 16/18.
+
 ```bash
 npm install
 npm run dev      # Entwicklung → http://localhost:3000
 npm run build    # Produktions-Build
 npm run preview  # Build lokal ansehen
 ```
+
+Für das Kontaktformular werden Umgebungsvariablen benötigt — Vorlage in [`.env.example`](.env.example) (lokal nach `.env` kopieren, Details unter [Kontaktformular](#kontaktformular)).
 
 ## Inhalte pflegen
 
@@ -29,6 +33,20 @@ npm run preview  # Build lokal ansehen
 - **Projektbeschreibungen** *Pokekon* (privates Repo) und *Waldbingo* (noch leer) sind vorläufig und in den Locale-Dateien als „anpassen" markiert.
 - **`baseUrl`** in [`nuxt.config.ts`](nuxt.config.ts) auf die echte Domain setzen (für korrekte SEO-/hreflang-Tags).
 
+## Kontaktformular
+
+Der Versand läuft über [Resend](https://resend.com) (HTTPS-API). SMTP ist bewusst **nicht** im Einsatz, da [Railway ausgehendes SMTP](https://docs.railway.com/networking/outbound-networking) auf Nicht-Pro-Plänen blockiert. Server-Handler: [`server/api/contact.post.ts`](server/api/contact.post.ts).
+
+Benötigte Variablen (lokal in `.env`, in Produktion als Railway-Variablen):
+
+| Variable | Zweck |
+| --- | --- |
+| `NUXT_RESEND_API_KEY` | API-Key aus [resend.com/api-keys](https://resend.com/api-keys) |
+| `NUXT_RESEND_FROM` | Absender, z.B. `Portfolio Kontakt <kontakt@konradthiemann.de>` |
+| `NUXT_CONTACT_TO` | Empfänger der Anfragen |
+
+Der Absender muss eine in Resend **verifizierte Domain** verwenden.
+
 ## Struktur
 
 ```
@@ -38,6 +56,8 @@ app/
   components/          # SiteHeader, LangSwitch, ProjectCard
   assets/scss/         # Theme
   utils/profile.ts     # Statische Profildaten
+server/
+  api/contact.post.ts  # Kontaktformular-Versand (Resend)
 i18n/locales/          # de.json, en.json
 ```
 
