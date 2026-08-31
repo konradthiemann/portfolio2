@@ -6,6 +6,7 @@
   "nav": {
     "home": "Start",
     "approach": "Arbeitsweise",
+    "aiWorkflow": "KI-System",
     "experience": "Verantwortung",
     "projects": "Projekte",
     "voices": "Stimmen",
@@ -32,7 +33,7 @@
     "items": [
       {
         "title": "Ich hinterfrage, bevor ich baue.",
-        "desc": "Bevor ich eine Lösung übernehme, prüfe ich, ob sie das Problem wirklich trifft. So habe ich über 100 UI-Bausteine einer eigenen Bibliothek mitgestaltet, die ein zugekauftes Framework ablösen – schlanker und schneller."
+        "desc": "Bevor ich eine Lösung übernehme, prüfe ich, ob sie das Problem wirklich trifft. So habe ich über 110 UI-Bausteine einer eigenen Bibliothek mitgestaltet, die ein zugekauftes Framework ablösen – schlanker und schneller."
       },
       {
         "title": "Ich baue passgenau, nicht überladen.",
@@ -52,20 +53,22 @@
   },
   "experience": {
     "title": "Was ich bei der Arbeit verantworte",
-    "lead": "Seit über 2,5 Jahren entwickle ich im Frontend eines mehrmarkenfähigen E-Commerce-Systems. Ich betreue nicht nur den Shop, sondern das System darum herum – verteilt über acht Teilsysteme. Ich denke *in Zusammenhängen*, nicht in einzelnen Aufgaben.",
+    "lead": "Seit fast drei Jahren entwickle ich im Frontend eines mehrmarkenfähigen E-Commerce-Systems – heute für vier Marken. Ich betreue nicht nur den Shop, sondern das System darum herum – verteilt über acht Teilsysteme. Ich denke *in Zusammenhängen*, nicht in einzelnen Aufgaben.",
     "stats": [
-      { "value": "2,5 Jahre", "label": "an einem produktiven Multi-Brand-Shop" },
-      { "value": "100+", "label": "wiederverwendbare UI-Bausteine mitgestaltet" },
+      { "value": "~3 Jahre", "label": "an einem produktiven Multi-Brand-Shop" },
+      { "value": "110+", "label": "wiederverwendbare UI-Bausteine mitgestaltet" },
       { "value": "9", "label": "SEO-Vorhaben verantwortet (2024–2026)" },
       { "value": "30+", "label": "gezielte Performance-Verbesserungen" }
     ],
     "items": [
       "Shop plus Variante für Direct-Order-Pages",
       "Mitaufbau einer firmeneigenen UI-Bibliothek, die ein zugekauftes Framework ablöst",
-      "API-Schicht, gemeinsame Bibliotheken & Drop-in-Pakete",
+      "API- und GraphQL-Schicht, gemeinsame Bibliotheken & Drop-in-Pakete",
       "Strapi-CMS",
       "Technisches SEO: automatische Sitemaps, Meta-Daten & Optimierung für Google Discover",
-      "Spürbar schnellere Ladezeiten durch gezielte Performance-Verbesserungen"
+      "Spürbar schnellere Ladezeiten durch gezielte Performance-Verbesserungen",
+      "Sicherheitshärtung geschäftskritischer Anwendungen: Content Security Policy, XSS- und Open-Redirect-Schutz",
+      "Technische Vorbereitung der laufenden Migration zu Shopify Plus"
     ],
     "educationTitle": "Weiterbildung",
     "educationSchool": "Developer Akademie",
@@ -96,6 +99,14 @@
       {
         "text": "Ich kann Konrad ohne Vorbehalt jedem Team oder Unternehmen empfehlen, das Wert auf engagierte, schnelle Lernende und authentische Persönlichkeiten legt.",
         "source": "Tobias Klemp, LinkedIn-Empfehlung"
+      },
+      {
+        "text": "Konrad hat sich in gut zwei Jahren vom Quereinsteiger zu einem unserer wichtigsten Software-Entwickler entwickelt.",
+        "source": "Irius Tinius, LinkedIn-Empfehlung"
+      },
+      {
+        "text": "Aus eigenem Antrieb hat Konrad KI-gestützte Entwicklungs-Workflows für unser Team konzipiert und damit unsere Prozesse standardisiert und beschleunigt.",
+        "source": "Irius Tinius, LinkedIn-Empfehlung"
       }
     ]
   },
@@ -103,7 +114,8 @@
     "title": "KI – bewusst gebaut",
     "body": "Ich setze KI nicht beliebig nebenbei ein, sondern lege bewusst fest, wie sie arbeitet: ein System spezialisierter KI-Agents mit klar dokumentierten Abläufen. Im Job und in eigenen Projekten steuere ich das KI-Tooling gezielt über eigene Konfigurationsdateien.",
     "note": "KI mit *hohem Hebel* statt blindem Vertrauen.",
-    "tags": ["Agents", "Instructions", "Skills", "Prompts"]
+    "tags": ["Agents", "Instructions", "Skills", "Hooks", "Prompts"],
+    "cta": "Wie ich das aufgebaut habe"
   },
   "tech": {
     "title": "Tech-Stack",
@@ -121,14 +133,29 @@
         "detail": "Plattform zum Erfassen von Ausgaben, Setzen von Budgets und Verfolgen finanzieller Ziele. Full-Stack mit Next.js, TypeScript, Prisma und PostgreSQL – strikt typisiert, mit CI und Tests."
       },
       "pokemeta": {
-        "name": "Pokémon-Meta-Tracker",
-        "tagline": "Karten tracken, Meta verstehen, Decks verbessern.",
-        "detail": "App zum Tracken von Kartenspielen, mit Überblick über die aktuelle Meta und Vorschlägen zur Deck-Verbesserung."
+        "name": "Pokékon",
+        "tagline": "Turnierdaten, Deck-Tracking und KI-Analyse für die TCG-Meta.",
+        "detail": "Dashboard für die Pokémon-TCG-Meta: Turnierdaten, Multi-Deck-Verwaltung und KI-gestützte Battle-Log-Analyse. Ursprünglich lokal-first (IndexedDB) gebaut, aktuell bewusst in Migration zu einer Server-API (Hono, PostgreSQL) als Single Source of Truth – Architekturentscheidung offen dokumentiert statt versteckt."
+      },
+      "prized": {
+        "name": "Prized",
+        "tagline": "Preiskarten trainieren, Kartenspiel-Gespür schärfen.",
+        "detail": "Trainings-Minispiel für Sammelkartenspiele: die sechs verdeckten Preiskarten per Ausschlussprinzip erraten. PWA mit Statistik-Tracking, Supabase-Auth für Gäste und eigenständige Nutzer, mehrstufiger Kartenbild-Fallback für hohe Verfügbarkeit."
+      },
+      "fotochallenge": {
+        "name": "Foto-Challenge",
+        "tagline": "QR-Code scannen, Aufgabe lösen, Erinnerung schaffen.",
+        "detail": "Party- und Hochzeits-App: Gäste scannen einen QR-Code und bekommen aus 219 kuratierten Aufgaben eine Foto-Challenge gestellt. Passwortgeschützte Galerie, installierbare PWA mit Offline-Shell – bewusst ohne Registrierungshürde für Gäste gebaut."
       },
       "waldbingo": {
         "name": "Waldbingo",
-        "tagline": "Dynamisches Familien-Bingo (in Entwicklung).",
-        "detail": "Familien-Bingo mit KI-, wetter- und ortsabhängig generierten Karten – Motivation, rauszugehen und die Umgebung zu entdecken."
+        "tagline": "Dynamisches Familien-Bingo.",
+        "detail": "Familien-Bingo mit wetter- und ortsabhängig generierten Karten als Web-App, plus ein eigenständiger Python-Generator für druckfertige PDF-Bingokarten – Motivation, rauszugehen und die Umgebung zu entdecken."
+      },
+      "aiinfra": {
+        "name": "Agentic Infra Dashboard",
+        "tagline": "Meine KI-Engineering-Infrastruktur, live sichtbar gemacht.",
+        "detail": "Meta-Dashboard über mein eigenes Agentic-Engineering-Setup: alle Repos, globale Claude-Code-Agents, Skills, Rules und Hooks sowie die Abläufe, die sie bilden – inklusive Monitoring von TDD-Gate-Blocks und CI-Status je Repo. Hält sich über einen hook-gesteuerten Daten-Branch automatisch aktuell, ganz ohne Redeploy."
       }
     }
   },
@@ -154,7 +181,21 @@
   },
   "personal": {
     "title": "Neben dem Code",
-    "items": ["Competitive Pokémon TCG", "Skateboard fahren", "Pizza backen"]
+    "note": "Zwei Hobbys, dieselbe Denkweise wie beim Programmieren – aufklappen für die Verbindung.",
+    "hobbies": [
+      {
+        "icon": "skateboard",
+        "title": "Skateboard fahren",
+        "tagline": "Fallen, korrigieren, nochmal – bis der Trick sitzt.",
+        "detail": "Jeder Trick entsteht über denselben Weg: viele misslungene Versuche, kleine Korrekturen, bis die Bewegung sitzt. Genau dieses wiederholte, fokussierte Üben verändert laut Sportneurowissenschaft messbar das Kleinhirn und hält das Gehirn in ständiger Neuroplastizität. Dieselbe Iterationsfreude – ausprobieren, aus dem Fehlschlag lernen, erneut versuchen – bringe ich beim Programmieren mit."
+      },
+      {
+        "icon": "pokeball",
+        "title": "Competitive Pokémon TCG",
+        "tagline": "Ein Board lesen, nicht 60 Karten auswendig lernen.",
+        "detail": "Wer ein Board schnell liest, sieht keine 60 Einzelkarten, sondern vertraute Konfigurationen – dasselbe „Chunking“, das die Kognitionsforschung seit Chase & Simons Schachstudien (1973) bei Expert:innen nachweist und das sich seither auch in Radiologie, Luftfahrt und Business-Forecasting bestätigt hat. Genau dieses Muster-statt-Auswendiglernen prägt, wie ich Code lese: vertraute Bug- und Architektur-Muster springen ins Auge, statt jede Zeile neu durchzurechnen."
+      }
+    ]
   },
   "contact": {
     "title": "Kontakt",
@@ -173,5 +214,113 @@
   },
   "footer": {
     "built": "Gebaut mit Nuxt & Vue."
+  },
+  "workflow": {
+    "meta": {
+      "title": "Konrad Thiemann · KI-System",
+      "description": "Wie ich KI in der Softwareentwicklung einsetze: Rules, Skills, Agents und Hooks als ein durchgängiges, automatisiert durchgesetztes System."
+    },
+    "back": "Zurück zur Übersicht",
+    "hero": {
+      "label": "KI-System",
+      "tagline": "Kein Zufalls-Prompting. Ein System.",
+      "intro": "Ich nutze KI in der Entwicklung nicht ad hoc, sondern über ein bewusst gebautes System aus vier Bausteinen: Rules, Skills, Agents und Hooks. Jeder übernimmt eine andere Aufgabe – zusammen ergeben sie einen nachvollziehbaren, automatisiert durchgesetzten Workflow, im Job wie in eigenen Projekten.",
+      "dashboardCta": "Live im Agentic Infra Dashboard ansehen"
+    },
+    "pillars": {
+      "title": "Vier Bausteine, ein System",
+      "lead": "Jeder Baustein übernimmt eine andere Rolle im selben Ablauf – von der stillschweigenden Konvention bis zur automatisierten Durchsetzung.",
+      "items": [
+        {
+          "key": "rules",
+          "title": "Rules",
+          "desc": "Grundkonventionen, die in jedem Repo automatisch gelten – ich muss sie nicht in jedem Prompt wiederholen. Eine CLAUDE.md pro Workspace-Ebene, plus dedizierte Regel-Dateien je Thema.",
+          "items": [
+            "Code-Style — TS strict, PSR-12/Symfony, Vue-SFC-Konventionen",
+            "Git & Commits — Branch-Namen, Conventional Commits, PR-Format",
+            "Security & Secrets — Keychain statt Klartext, keine echten Keys in öffentlichen Repos",
+            "Spec-Driven Development — erst Spec, dann Plan, dann Code",
+            "Test-Driven Development — Rot-Grün-Refactor ist Pflicht",
+            "Worktrees — parallele Agenten ohne Datei-Kollisionen"
+          ]
+        },
+        {
+          "key": "skills",
+          "title": "Skills",
+          "desc": "Wiederkehrende Abläufe, die ich per Kommando auslöse, statt sie jedes Mal neu zu erklären. „/feature“ verkettet die anderen zu einem kompletten Fluss.",
+          "items": [
+            "/feature — verkettet Spec → Plan → Tests → Implementierung → Gates → Review",
+            "/spec — schreibt die Spec (Problem, User Stories, Akzeptanzkriterien)",
+            "/commit — Conventional Commit im Workspace-Format",
+            "/worktree — isolierten Arbeitsbaum für Parallelarbeit anlegen",
+            "/new-app — Repo-Grundgerüst inkl. CI und Commit-Setup",
+            "/wrap-session — strukturierter Abschluss einer Arbeits-Session"
+          ]
+        },
+        {
+          "key": "agents",
+          "title": "Agents",
+          "desc": "Spezialisierte Rollen mit eigenem Werkzeugkasten, die ich gezielt für einzelne Schritte einsetze, statt einem einzelnen Modell alles auf einmal zu geben.",
+          "items": [
+            "orchestrator — zerlegt mehrschichtige Features, koordiniert die anderen Agents",
+            "planner — Implementierungsplan inkl. Interfaces & Contracts, schreibt keinen Code",
+            "tester — schreibt fehlschlagende Tests aus den Plan-Contracts (Rot)",
+            "implementer — macht Tests grün, hält sich an die Quality-Gates",
+            "reviewer — prüft Diffs auf echte Fehler, nicht auf Stil",
+            "security — auditiert Auth, Input-Handling und Secrets vor dem Ship",
+            "data-analyst — Schema-, Migrations- und Query-Planung",
+            "docs — hält README, Changelog und Doku synchron zum Code"
+          ]
+        },
+        {
+          "key": "hooks",
+          "title": "Hooks",
+          "desc": "Automatisierte Durchsetzung im Hintergrund – nicht auf Disziplin verlassen, sondern technisch blockieren, was gegen die eigenen Regeln verstößt.",
+          "items": [
+            "git-safety — blockiert force-push, main-Push, reset --hard, .env-Commits",
+            "tdd-gate — blockiert commit ohne grünen Testlauf, PR ohne Lint/Typecheck/Test",
+            "infra-dashboard-sync — hält das Agentic-Infra-Dashboard automatisch aktuell",
+            "stop-notify — Benachrichtigung, wenn ein Agentenlauf fertig ist"
+          ]
+        }
+      ]
+    },
+    "flow": {
+      "title": "So läuft ein Feature durch das System",
+      "lead": "Am Beispiel eines nicht-trivialen Features – ausgelöst mit einem einzigen Befehl.",
+      "steps": [
+        {
+          "tag": "Skill · /spec",
+          "title": "Spec schreiben",
+          "desc": "Problem, User Stories und prüfbare Akzeptanzkriterien – bevor irgendetwas gebaut wird. Ich gebe die Spec frei, bevor es weitergeht."
+        },
+        {
+          "tag": "Agent · planner",
+          "title": "Plan erstellen",
+          "desc": "Layer-für-Layer-Plan mit Interfaces & Contracts. Kein Code – nur die Entscheidungen, die tester und implementer verbindlich brauchen."
+        },
+        {
+          "tag": "Agent · tester",
+          "title": "Tests schreiben (Rot)",
+          "desc": "Fehlschlagende Tests direkt aus den Plan-Contracts – ohne die Implementierung zu kennen."
+        },
+        {
+          "tag": "Agent · implementer",
+          "title": "Implementieren (Grün)",
+          "desc": "Macht die Tests grün, nicht mehr. Hält sich an Code-Style- und Security-Rules."
+        },
+        {
+          "tag": "Hook · tdd-gate + git-safety",
+          "title": "Gate erzwingen",
+          "desc": "Commit wird technisch blockiert, wenn seit der letzten Änderung kein grüner Testlauf erkannt wurde – unabhängig davon, ob ich es vergesse."
+        },
+        {
+          "tag": "Agent · reviewer + security",
+          "title": "Review gegen die Spec",
+          "desc": "Prüft den Diff auf echte Fehler und gegen die Akzeptanzkriterien der Spec – nicht auf Geschmack."
+        }
+      ],
+      "note": "Bei Einzeilern oder Trivialfixes übernehme ich diesen Ablauf komplett selbst, ohne den vollen Agenten-Apparat – das System skaliert mit der Aufgabe, nicht gegen sie."
+    }
   }
 }

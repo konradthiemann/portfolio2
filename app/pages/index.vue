@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { t, tm, rt } = useI18n()
+const localePath = useLocalePath()
 
 // Array-Messages sicher als String-Liste auslesen.
 const toList = (key: string) => (tm(key) as unknown[]).map((m) => rt(m as never))
@@ -71,43 +72,52 @@ onBeforeUnmount(() => window.removeEventListener('resize', updatePerView))
 const aiTags = computed(() => toList('ai.tags'))
 const teachingItems = computed(() => toList('teaching.items'))
 const aboutValues = computed(() => toList('about.values'))
-const personalItems = computed(() => toList('personal.items'))
 
-// Monoline-Icon je Hobby (Reihenfolge = personal.items).
-const hobbyIcons = ['pokeball', 'skateboard', 'pizza'] as const
+// Hobby-Kacheln: gleiches Akkordeon-Muster wie die Projekte (siehe unten),
+// inhaltlich mit der Arbeitsweise verknüpft statt nur aufgezählt.
+const hobbies = computed(() =>
+  (tm('personal.hobbies') as Record<string, unknown>[]).map((m) => ({
+    icon: rt(m.icon as never) as 'skateboard' | 'pokeball',
+    title: rt(m.title as never),
+    tagline: rt(m.tagline as never),
+    detail: rt(m.detail as never),
+  })),
+)
 
 // Sanft zum Kontaktformular springen und das erste Feld fokussieren.
 const focusContact = useContactFocus()
 
-// Projekt-Akkordeon: nur EINE Kachel offen (zwei 2x2-Blöcke passen nicht in die
-// 2-zeilige, höhenkonstante Raster-Anordnung auf dem Desktop).
+// Projekt-Raster: die Kacheln selbst ändern nie Größe/Position (kein Grid-
+// Reflow-Sprung bei 6 Kacheln) – der Inhalt zum ausgewählten Projekt lebt in
+// einem gemeinsamen Detail-Bereich direkt unterhalb des Rasters, der weich
+// auf- und zuklappt (0fr/1fr-Trick) und dessen Inhalt beim Wechsel kurz
+// überblendet (siehe <Transition> im Template).
 const openProject = ref<string | null>(null)
+const openProjectData = computed(() => profile.projects.find((p) => p.slug === openProject.value))
+const projectDetail = useTemplateRef('projectDetail')
 
-// Beim vollständigen Schließen kurz aktiv: hält die zurückwachsenden Nachbar-
-// Kacheln kompakt (Tagline/Button/Padding zurück), bis ihre Breite wieder voll
-// ist (~0.7s = 0.3s flex-grow-Delay + 0.4s Dauer). Sonst würden Tagline/Button
-// erscheinen, während die Kachel noch schmal ist, dem Titel Platz stehlen und ihn
-// auf viele Zeilen treiben → Höhe schießt kurz hoch (Überschwingen). CSS allein
-// reicht nicht: der display:none→block-Wechsel ignoriert transition-delay.
-const collapsing = ref(false)
-let collapseTimer: ReturnType<typeof setTimeout> | undefined
-
-// Klick auf eine Kachel: auf-/zuklappen (Einzel-Akkordeon). Auf breiten
-// Viewports weitet sich die aktive Kachel horizontal aus, die übrigen schrumpfen
-// zur Seite – rein über CSS-Transitions (flex-grow), kein FLIP/Positionssprung.
 const toggleProject = (slug: string) => {
-  const isClosing = openProject.value === slug
-  openProject.value = isClosing ? null : slug
-  clearTimeout(collapseTimer)
-  if (isClosing) {
-    collapsing.value = true
-    collapseTimer = setTimeout(() => (collapsing.value = false), 700)
-  } else {
-    collapsing.value = false
-  }
+  openProject.value = openProject.value === slug ? null : slug
 }
 
-onBeforeUnmount(() => clearTimeout(collapseTimer))
+// Beim Öffnen (oder Wechsel zu einem anderen Projekt) den Detail-Bereich weich
+// ins Blickfeld holen – vor allem mobil, damit man nicht selbst zur gerade
+// aufgeklappten Stelle scrollen muss. Beim Schließen bewusst kein Scroll.
+// EIN einziger Scroll, erst NACH der 0.45s-Aufklapp-Animation ausgelöst –
+// vorher zielt scrollIntoView noch auf die alte, kollabierte Höhe, was einen
+// kurzen Gegen-Scroll (erst hoch, dann runter) verursacht.
+watch(openProject, async (next) => {
+  if (!next) return
+  await nextTick()
+  setTimeout(() => {
+    projectDetail.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }, 470)
+})
+
+const openHobby = ref<string | null>(null)
+const toggleHobby = (title: string) => {
+  openHobby.value = openHobby.value === title ? null : title
+}
 
 const contacts = computed(() => {
   const list = [
@@ -231,6 +241,11 @@ const contacts = computed(() => {
         <li v-for="tag in aiTags" :key="tag">{{ tag }}</li>
       </ul>
       <p v-mark-view class="ai-note" v-html="mark('ai.note')"></p>
+      <div class="hero__cta">
+        <NuxtLink :to="localePath('ki-workflow')" class="btn btn--ghost">
+          {{ t('ai.cta') }} <span aria-hidden="true">→</span>
+        </NuxtLink>
+      </div>
     </div>
   </section>
 
@@ -266,23 +281,40 @@ const contacts = computed(() => {
     <div v-reveal class="wrap reveal">
       <p class="section__label">{{ t('projects.title') }}</p>
       <p class="muted">{{ t('projects.note') }}</p>
-      <div
-        class="grid grid--projects"
-        :class="{ 'has-open': openProject, 'is-collapsing': collapsing }"
-      >
+      <div class="grid grid--projects">
         <ProjectCard
           v-for="p in profile.projects"
           :key="p.slug"
-          :project="p"
           :name="t(`projects.items.${p.slug}.name`)"
           :tagline="t(`projects.items.${p.slug}.tagline`)"
-          :detail="t(`projects.items.${p.slug}.detail`)"
-          :cta="t('projects.viewRepo')"
-          :live-cta="t('projects.viewLive')"
           :expand-label="t('a11y.expand')"
-          :open="openProject === p.slug"
-          @toggle="toggleProject(p.slug)"
+          :active="openProject === p.slug"
+          @select="toggleProject(p.slug)"
         />
+      </div>
+
+      <div
+        id="project-detail"
+        ref="projectDetail"
+        class="project-detail-reveal"
+        :class="{ 'is-open': openProjectData }"
+      >
+        <div class="project-detail-body">
+          <div class="project-detail-inner">
+            <Transition name="fade" mode="out-in">
+              <ProjectDetail
+                v-if="openProjectData"
+                :key="openProjectData.slug"
+                :project="openProjectData"
+                :name="t(`projects.items.${openProjectData.slug}.name`)"
+                :tagline="t(`projects.items.${openProjectData.slug}.tagline`)"
+                :detail="t(`projects.items.${openProjectData.slug}.detail`)"
+                :cta="t('projects.viewRepo')"
+                :live-cta="t('projects.viewLive')"
+              />
+            </Transition>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -408,17 +440,20 @@ const contacts = computed(() => {
       </p>
 
       <p class="section__label personal__label">{{ t('personal.title') }}</p>
-      <ul class="hobbies">
-        <li
-          v-for="(item, i) in personalItems"
-          :key="i"
-          v-reveal
-          class="hobby reveal draw"
-        >
-          <span class="hobby__art"><LineArt :name="hobbyIcons[i]" /></span>
-          <span class="hobby__label">{{ item }}</span>
-        </li>
-      </ul>
+      <p class="muted">{{ t('personal.note') }}</p>
+      <div class="grid grid--hobbies">
+        <HobbyCard
+          v-for="h in hobbies"
+          :key="h.title"
+          :icon="h.icon"
+          :title="h.title"
+          :tagline="h.tagline"
+          :detail="h.detail"
+          :expand-label="t('a11y.expand')"
+          :open="openHobby === h.title"
+          @toggle="toggleHobby(h.title)"
+        />
+      </div>
     </div>
   </section>
 
@@ -1001,26 +1036,80 @@ const contacts = computed(() => {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 }
 
-/* Projekte: nie 2 + 1. Unterhalb des Akkordeons (≥1350px) immer 1 Spalte (3×1),
-   ab 1350px wird daraus das horizontale 1×3-Akkordeon (siehe unten). */
+/* Projekte: responsives Mehrspalten-Raster, das mit der Anzahl der Kacheln
+   skaliert statt für eine feste Zahl handgebaut zu sein. Die Kacheln selbst
+   ändern nie Größe/Position (siehe ProjectCard.vue) – nur ein einziger,
+   gemeinsamer Detail-Bereich darunter klappt auf/zu (siehe unten). Dadurch
+   bleibt die Animation auf einen vorhersehbaren Höhen-Übergang beschränkt,
+   unabhängig davon, ob 3 oder 6 Kacheln im Raster stehen. */
 .grid--projects {
   grid-template-columns: 1fr;
 }
 
-/* Projekt-Raster auf breiten Viewports (ab ~1350px): horizontales Akkordeon in
-   EINER Reihe. Die aktive Kachel weitet sich in der Breite aus (flex-grow), die
-   übrigen schrumpfen zur Seite – kein Zeilensprung, kein reservierter Leerraum.
-   Die Breitenänderung animiert rein über die flex-grow-Transition der .card
-   (siehe ProjectCard), daher kein FLIP/Gewackel. align-items:flex-start →
-   die geschlossenen Kacheln bleiben KLEIN (nur Kopfzeile); ausschließlich die
-   geöffnete Kachel wächst vertikal. Die Höhe der offenen Kachel wächst monoton
-   (erst Breite, dann Höhe via ProjectCard), daher kein „erst kleiner, dann
-   größer". */
-@media (min-width: 1350px) {
+@media (min-width: 640px) {
   .grid--projects {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid--projects {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Gemeinsamer Detail-Bereich für das aktuell ausgewählte Projekt. Klappt über
+   den bewährten grid-template-rows 0fr→1fr-Trick weich auf/zu (exakte
+   Inhaltshöhe, kein Ruckeln wie bei max-height). scroll-margin-top hält beim
+   automatischen Ins-Blickfeld-Scrollen (siehe index.vue-Script) Abstand zum
+   fixierten mobilen Header. margin-top ist Teil der Transition, damit er beim
+   Schließen nicht hart springt, sondern mit der Höhe zusammen ausläuft. */
+.project-detail-reveal {
+  display: grid;
+  grid-template-rows: 0fr;
+  margin-top: 0;
+  scroll-margin-top: 5rem;
+  transition: grid-template-rows 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    margin-top 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-detail-reveal.is-open {
+  grid-template-rows: 1fr;
+  margin-top: 1.5rem;
+}
+
+/* Direktes Grid-Kind der 0fr/1fr-Spur: overflow:hidden + KEIN eigenes
+   Padding/Rahmen, damit es beim Schließen wirklich auf 0 kollabiert (Padding
+   hier würde die Spur auf Padding-Höhe „aufbocken"). Padding/Rahmen/Hintergrund
+   trägt stattdessen .project-detail-inner – dieselbe Aufteilung wie
+   .card__body/.card__inner bei den Projekt-Kacheln. */
+.project-detail-body {
+  overflow: hidden;
+}
+
+.project-detail-inner {
+  padding: 1.75rem clamp(1.5rem, 4vw, 2.25rem);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+  border-radius: 14px;
+}
+
+/* Inhaltswechsel zwischen zwei Projekten überblendet kurz, statt hart
+   umzuspringen (Vue <Transition mode="out-in">). */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.18s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-detail-reveal {
+    transition: none;
   }
 }
 
@@ -1040,32 +1129,15 @@ const contacts = computed(() => {
   margin-top: 3rem;
 }
 
-.hobbies {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+/* Zwei Hobby-Kacheln, nie 2+1 – siehe .grid--cards für dieselbe Regel. */
+.grid--hobbies {
+  grid-template-columns: 1fr;
 }
 
-.hobby {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  padding: 0.85rem 1.2rem 0.85rem 0.95rem;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--surface);
-}
-
-.hobby__art {
-  display: block;
-  flex-shrink: 0;
-  width: 34px;
-  height: 34px;
-}
-
-.hobby__label {
-  font-size: 0.95rem;
-  font-weight: 500;
+@media (min-width: 560px) {
+  .grid--hobbies {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .footer {
