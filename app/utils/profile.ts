@@ -24,9 +24,7 @@ export const features = {
 export const profile = {
   name: 'Konrad Thiemann',
 
-  // TODO: Kontakt-E-Mail eintragen. Bleibt das Feld leer, wird der
-  // E-Mail-Button ausgeblendet und nur LinkedIn/GitHub angezeigt.
-  email: '',
+  email: 'konrad.thiemann@gmail.com',
 
   // Profilbild im Hero (in /public). Transparente Strichzeichnung: WebP mit PNG-Fallback.
   image: {
