@@ -75,7 +75,7 @@ export const profile = {
     {
       slug: 'doewe',
       url: 'https://github.com/konradthiemann/Doewe',
-      liveUrl: 'https://doewe.konradthiemann.de',
+      liveUrl: 'https://doewe.konradthiemann.de/welcome',
       stack: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL'],
       image: { webp: '/projects/doewe.webp', jpg: '/projects/doewe.jpg' },
     },
