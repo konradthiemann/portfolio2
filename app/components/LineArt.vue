@@ -6,9 +6,13 @@ defineProps<{
   name:
     | 'pokeball'
     | 'skateboard'
-    | 'pizza'
     | 'code'
     | 'guitar'
+    // KI-System-Bausteine (24er viewBox, wie oben)
+    | 'rules'
+    | 'skills'
+    | 'agents'
+    | 'hooks'
     // Sektions-Motive (viewBox 140, pathLength normiert)
     | 'approach'
     | 'experience'
@@ -60,21 +64,39 @@ const sectionMotifs = new Set([
       <circle cx="17" cy="14.7" r="1.5" />
     </template>
 
-    <!-- Pizzastück -->
-    <template v-else-if="name === 'pizza'">
-      <path d="M4 5.5 20 5.5 12 21Z" />
-      <path d="M4 5.5c5-2 11-2 16 0" />
-      <circle cx="10" cy="9.5" r="1" />
-      <circle cx="14.5" cy="10.5" r="1" />
-      <circle cx="12" cy="14.5" r="1" />
-    </template>
-
     <!-- Guitar (Foto-Hommage) -->
     <template v-else-if="name === 'guitar'">
       <path d="M19.5 3.5 16 7" />
       <circle cx="9" cy="15" r="5.5" />
       <path d="M12.9 11.1 16 8c1-1 3-1 3.5-.5S20 9.5 19 10.5L16 13" />
       <circle cx="9" cy="15" r="1.6" />
+    </template>
+
+    <!-- Rules: Dokument mit Haken (Konventionen) -->
+    <template v-else-if="name === 'rules'">
+      <path d="M6 3.5h8.5L18 7v13.5H6Z" />
+      <path d="M14.5 3.5V7H18" />
+      <path d="M9 12.5l2 2 4-4" />
+    </template>
+
+    <!-- Skills: Blitz (ausgelöster Ablauf) -->
+    <template v-else-if="name === 'skills'">
+      <path d="M13 2 4 14h6l-1 8 9-12h-6z" />
+    </template>
+
+    <!-- Agents: vernetzte Knoten (spezialisierte Rollen) -->
+    <template v-else-if="name === 'agents'">
+      <circle cx="6" cy="18" r="2" />
+      <circle cx="12" cy="6" r="2" />
+      <circle cx="18" cy="18" r="2" />
+      <path d="M7.5 16.5 11 7.5" />
+      <path d="M13 7.5 16.5 16.5" />
+    </template>
+
+    <!-- Hooks: Schild mit Haken (automatisierte Durchsetzung) -->
+    <template v-else-if="name === 'hooks'">
+      <path d="M12 2 4 5v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V5Z" />
+      <path d="M9 12l2 2 4-4" />
     </template>
 
     <!-- ── Sektions-Motive (viewBox 140, pathLength normiert, reduziert) ── -->

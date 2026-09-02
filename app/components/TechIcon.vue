@@ -74,6 +74,56 @@ const key = computed(() =>
       <path d="M5 6 C5 8 19 8 19 6" />
     </template>
 
+    <!-- Node.js: Sechseck mit Kerbe (Node-Logoform) -->
+    <template v-else-if="key === 'nodejs'">
+      <path d="M12 3 20 7.5 V16.5 L12 21 4 16.5 V7.5 Z" />
+      <path d="M9 12 L11 14 L15 9" />
+    </template>
+
+    <!-- GraphQL: Badge -->
+    <template v-else-if="key === 'graphql'">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="3" />
+      <text class="tech-ico__t tech-ico__t--sm" x="12" y="15">GQL</text>
+    </template>
+
+    <!-- Redis: gestapelte Ringe (In-Memory-Datenschichten) -->
+    <template v-else-if="key === 'redis'">
+      <ellipse cx="12" cy="6.5" rx="7" ry="2.5" />
+      <path d="M5 6.5 V12 C5 13.4 8.1 14.5 12 14.5 C15.9 14.5 19 13.4 19 12 V6.5" />
+      <path d="M5 12.5 V18 C5 19.4 8.1 20.5 12 20.5 C15.9 20.5 19 19.4 19 18 V12.5" />
+    </template>
+
+    <!-- Elasticsearch: Lupe (Suche) -->
+    <template v-else-if="key === 'elasticsearch'">
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="M15.5 15.5 20.5 20.5" />
+    </template>
+
+    <!-- Shopify: Einkaufstasche -->
+    <template v-else-if="key === 'shopify'">
+      <path d="M6.5 8 17.5 8 18.5 20.5 5.5 20.5 Z" />
+      <path d="M9 8 C9 5 10.2 3.5 12 3.5 C13.8 3.5 15 5 15 8" />
+    </template>
+
+    <!-- Docker: Container-Kisten -->
+    <template v-else-if="key === 'docker'">
+      <rect x="3.5" y="12" width="17" height="7.5" rx="1.5" />
+      <path d="M6.5 12 V9 H9.5 V12 M11 12 V9 H14 V12 M16 12 V9 H19 V12 M11 8 V5 H14 V8" />
+    </template>
+
+    <!-- Sentry: Schild mit Ausrufezeichen (Fehler-Monitoring) -->
+    <template v-else-if="key === 'sentry'">
+      <path d="M12 2.5 20 6.5 V13 C20 17 16.5 20 12 21.5 C7.5 20 4 17 4 13 V6.5 Z" />
+      <path d="M12 8 V13.5" />
+      <circle cx="12" cy="16.5" r="0.6" fill="currentColor" stroke="none" />
+    </template>
+
+    <!-- Vitest: Haken im Kreis (bestandene Tests) -->
+    <template v-else-if="key === 'vitest'">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M8 12.5 10.5 15 16 8.5" />
+    </template>
+
     <!-- Strapi: Ebenen / Würfel (CMS) -->
     <template v-else-if="key === 'strapi'">
       <path d="M12 4 20 8 12 12 4 8 Z" />

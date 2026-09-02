@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
+const localePath = useLocalePath()
+const route = useRoute()
 
 const nav = [
   { key: 'home', id: 'top' },
@@ -8,7 +10,33 @@ const nav = [
   { key: 'projects', id: 'projects' },
   { key: 'voices', id: 'voices' },
   { key: 'contact', id: 'contact' },
+  { key: 'aiWorkflow', to: 'ki-workflow' },
 ]
+
+// Anker-Items funktionieren nur auf der Startseite; auf anderen Seiten führen
+// sie zurück zur Startseite samt Hash. Reine Seiten-Items (`to`) verlinken
+// direkt auf ihre lokalisierte Route.
+const isHome = computed(() => route.path === localePath('index'))
+function hrefFor(item: { id?: string; to?: string }) {
+  if (item.to) return localePath(item.to)
+  return isHome.value ? `#${item.id}` : `${localePath('index')}#${item.id}`
+}
+function isActiveItem(item: { id?: string; to?: string }) {
+  if (item.to) return route.path === localePath(item.to)
+  return isHome.value && activeId.value === item.id
+}
+
+// Anker-Klick auf der Startseite selbst übernehmen (nicht dem nativen
+// Hash-Sprung überlassen – siehe app.vue für den Hintergrund/Safari-Bug).
+// Seiten-Links und Anker-Links auf anderen Seiten navigieren normal; dort
+// übernimmt app.vue das Scrollen nach der Landung.
+function onNavClick(e: MouseEvent, item: { id?: string; to?: string }) {
+  closeMenu()
+  if (item.to || !isHome.value || !item.id) return
+  e.preventDefault()
+  document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  history.pushState(null, '', `#${item.id}`)
+}
 
 // Burger-Menü (nur mobil): Sichtbarkeit der Navigation + Spracheinstellung.
 const menuOpen = ref(false)
@@ -25,7 +53,7 @@ function onKeydown(e: KeyboardEvent) {
 }
 
 onMounted(() => {
-  const ids = nav.map((n) => n.id)
+  const ids = nav.filter((n): n is typeof n & { id: string } => !!n.id).map((n) => n.id)
   const visible = new Set<string>()
   observer = new IntersectionObserver(
     (entries) => {
@@ -74,10 +102,10 @@ onBeforeUnmount(() => {
           <a
             v-for="item in nav"
             :key="item.key"
-            :href="`#${item.id}`"
-            :class="{ 'is-active': activeId === item.id }"
-            :aria-current="activeId === item.id ? 'true' : undefined"
-            @click="closeMenu"
+            :href="hrefFor(item)"
+            :class="{ 'is-active': isActiveItem(item), 'is-page-link': item.to }"
+            :aria-current="isActiveItem(item) ? 'true' : undefined"
+            @click="onNavClick($event, item)"
           >
             {{ t(`nav.${item.key}`) }}
           </a>
@@ -202,6 +230,14 @@ onBeforeUnmount(() => {
   }
 }
 
+/* Seiten-Link (KI-System) optisch von den Anker-Punkten der Startseite
+   absetzen – anderer Navigations-Typ (echte Route statt Scroll-Ziel). */
+.hdr__nav a.is-page-link {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--line);
+}
+
 /* Tablet: genug Platz → Burger weg, Menü inline in der Leiste. */
 @media (min-width: 620px) {
   .hdr__burger {
@@ -220,6 +256,14 @@ onBeforeUnmount(() => {
     gap: 1.4rem;
     margin-left: auto;
     font-size: 0.92rem;
+  }
+
+  .hdr__nav a.is-page-link {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    padding-left: 1.4rem;
+    border-left: 1px dashed var(--line);
   }
 }
 
@@ -265,6 +309,14 @@ onBeforeUnmount(() => {
 
     a:hover {
       opacity: 1;
+    }
+
+    a.is-page-link {
+      margin-top: 0.4rem;
+      padding-top: 0.9rem;
+      padding-left: 0;
+      border-top: 1px dashed var(--line);
+      border-left: none;
     }
   }
 

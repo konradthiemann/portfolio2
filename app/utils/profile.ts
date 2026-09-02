@@ -24,9 +24,7 @@ export const features = {
 export const profile = {
   name: 'Konrad Thiemann',
 
-  // TODO: Kontakt-E-Mail eintragen. Bleibt das Feld leer, wird der
-  // E-Mail-Button ausgeblendet und nur LinkedIn/GitHub angezeigt.
-  email: '',
+  email: 'konrad.thiemann@gmail.com',
 
   // Profilbild im Hero (in /public). Transparente Strichzeichnung: WebP mit PNG-Fallback.
   image: {
@@ -53,7 +51,15 @@ export const profile = {
     'HTML',
     'SQL',
     'PostgreSQL',
+    'Node.js',
+    'GraphQL',
+    'Redis',
+    'Elasticsearch',
     'Strapi',
+    'Shopify',
+    'Docker',
+    'Sentry',
+    'Vitest',
     'GitLab',
     'GitHub',
     'GitHub Copilot',
@@ -69,7 +75,7 @@ export const profile = {
     {
       slug: 'doewe',
       url: 'https://github.com/konradthiemann/Doewe',
-      liveUrl: 'https://doewe.konradthiemann.de',
+      liveUrl: 'https://doewe.konradthiemann.de/welcome',
       stack: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL'],
       image: { webp: '/projects/doewe.webp', jpg: '/projects/doewe.jpg' },
     },
@@ -77,15 +83,35 @@ export const profile = {
       slug: 'pokemeta',
       url: 'https://github.com/konradthiemann/Pokekon',
       liveUrl: 'https://pokekon.konradthiemann.de',
-      stack: ['Vue', 'TypeScript'],
+      stack: ['React', 'TypeScript', 'Hono', 'PostgreSQL'],
       image: { webp: '/projects/pokemeta.webp', jpg: '/projects/pokemeta.jpg' },
+    },
+    {
+      slug: 'prized',
+      url: 'https://github.com/konradthiemann/Pok-mon-TCG-Prize-Checker',
+      liveUrl: 'https://prized.konradthiemann.de',
+      stack: ['React', 'TypeScript', 'Vite', 'Supabase'],
+      image: { webp: '/projects/prized.webp', jpg: '/projects/prized.jpg' },
+    },
+    {
+      slug: 'fotochallenge',
+      url: 'https://github.com/konradthiemann/Foto-Challenge',
+      liveUrl: 'https://knips.konradthiemann.de/landing',
+      stack: ['Node.js', 'Express', 'SQLite', 'PWA'],
+      image: { webp: '/projects/fotochallenge.webp', jpg: '/projects/fotochallenge.jpg' },
     },
     {
       slug: 'waldbingo',
       url: 'https://github.com/konradthiemann/Waldbingo',
       liveUrl: 'https://waldbingo.konradthiemann.de',
-      stack: ['Nuxt', 'KI'],
+      stack: ['React', 'TypeScript', 'Python'],
       image: { webp: '/projects/waldbingo.webp', jpg: '/projects/waldbingo.jpg' },
+    },
+    {
+      slug: 'aiinfra',
+      url: 'https://github.com/konradthiemann/agentic-infra-dashboard',
+      liveUrl: 'https://agentic-infra-dashboard-production.up.railway.app',
+      stack: ['Next.js', 'TypeScript', 'Tailwind'],
     },
   ],
 }

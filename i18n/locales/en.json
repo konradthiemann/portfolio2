@@ -6,6 +6,7 @@
   "nav": {
     "home": "Home",
     "approach": "Approach",
+    "aiWorkflow": "AI Setup",
     "experience": "Ownership",
     "projects": "Projects",
     "voices": "Voices",
@@ -32,7 +33,7 @@
     "items": [
       {
         "title": "I question before I build.",
-        "desc": "Before adopting a solution, I check whether it really fits the problem. That's how I came to shape 100+ UI building blocks of an in-house library that replaces a third-party framework – leaner and faster."
+        "desc": "Before adopting a solution, I check whether it really fits the problem. That's how I came to shape 110+ UI building blocks of an in-house library that replaces a third-party framework – leaner and faster."
       },
       {
         "title": "I build purpose-fit, not bloated.",
@@ -52,20 +53,22 @@
   },
   "experience": {
     "title": "What I own at work",
-    "lead": "For over 2.5 years I've worked on the frontend of a multi-brand e-commerce system. I look after not just the shop but the system around it – across eight subsystems. I think *in connections*, not isolated tasks.",
+    "lead": "For almost three years I've worked on the frontend of a multi-brand e-commerce system – today across four brands. I look after not just the shop but the system around it – across eight subsystems. I think *in connections*, not isolated tasks.",
     "stats": [
-      { "value": "2.5 yrs", "label": "on a production multi-brand shop" },
-      { "value": "100+", "label": "reusable UI building blocks shaped" },
+      { "value": "~3 yrs", "label": "on a production multi-brand shop" },
+      { "value": "110+", "label": "reusable UI building blocks shaped" },
       { "value": "9", "label": "technical-SEO initiatives owned (2024–2026)" },
       { "value": "30+", "label": "targeted performance improvements" }
     ],
     "items": [
       "Shop plus a direct-order-pages variant",
       "Helped build a custom UI library that replaces a third-party framework",
-      "API layer, shared libraries & drop-in packages",
+      "API and GraphQL layer, shared libraries & drop-in packages",
       "Strapi CMS",
       "Technical SEO: automated sitemaps, meta data & Google Discover optimisation",
-      "Noticeably faster load times through targeted performance work"
+      "Noticeably faster load times through targeted performance work",
+      "Security hardening for business-critical applications: Content Security Policy, XSS and open-redirect protection",
+      "Technical groundwork for the ongoing migration to Shopify Plus"
     ],
     "educationTitle": "Education",
     "educationSchool": "Developer Akademie",
@@ -96,6 +99,14 @@
       {
         "text": "I can recommend Konrad without reservation to any team or company that values committed, fast learners and authentic personalities.",
         "source": "Tobias Klemp, LinkedIn recommendation"
+      },
+      {
+        "text": "In just over two years, Konrad grew from a career changer into one of our most important software developers.",
+        "source": "Irius Tinius, LinkedIn recommendation"
+      },
+      {
+        "text": "On his own initiative, Konrad designed AI-assisted development workflows for our team, standardising and speeding up our processes.",
+        "source": "Irius Tinius, LinkedIn recommendation"
       }
     ]
   },
@@ -103,7 +114,8 @@
     "title": "AI – deliberately built",
     "body": "I don't reach for AI at random – I deliberately define how it works: a system of specialised AI agents with clearly documented workflows. At work and in my own projects I steer the AI tooling through dedicated configuration files.",
     "note": "AI with *high leverage*, not blind trust.",
-    "tags": ["Agents", "Instructions", "Skills", "Prompts"]
+    "tags": ["Agents", "Instructions", "Skills", "Hooks", "Prompts"],
+    "cta": "How I built this"
   },
   "tech": {
     "title": "Tech stack",
@@ -121,14 +133,29 @@
         "detail": "A platform for logging expenses, setting budgets and tracking financial goals. Full-stack with Next.js, TypeScript, Prisma and PostgreSQL – strictly typed, with CI and tests."
       },
       "pokemeta": {
-        "name": "Pokémon Meta Tracker",
-        "tagline": "Track games, understand the meta, improve decks.",
-        "detail": "An app for tracking card games, with an overview of the current meta and suggestions to improve your deck."
+        "name": "Pokékon",
+        "tagline": "Tournament data, deck tracking and AI analysis for the TCG meta.",
+        "detail": "A dashboard for the Pokémon TCG meta: tournament data, multi-deck management and AI-assisted battle-log analysis. Originally built local-first (IndexedDB), currently in deliberate migration to a server API (Hono, PostgreSQL) as the single source of truth – the architecture decision is documented openly, not hidden."
+      },
+      "prized": {
+        "name": "Prized",
+        "tagline": "Train your prize-card instinct.",
+        "detail": "A training mini-game for trading card games: guess the six hidden prize cards by process of elimination. PWA with stat tracking, Supabase auth for guests and registered users, and a multi-tier card-image fallback for high availability."
+      },
+      "fotochallenge": {
+        "name": "Foto-Challenge",
+        "tagline": "Scan a QR code, complete a task, create a memory.",
+        "detail": "A party and wedding app: guests scan a QR code and get assigned a photo challenge from 219 curated tasks. Password-protected gallery, installable PWA with an offline shell – deliberately built with no sign-up friction for guests."
       },
       "waldbingo": {
         "name": "Waldbingo",
-        "tagline": "Dynamic family bingo (in progress).",
-        "detail": "Family bingo with cards generated based on AI, weather and location – motivation to head outside and explore your surroundings."
+        "tagline": "Dynamic family bingo.",
+        "detail": "Family bingo with cards generated based on weather and location as a web app, plus a standalone Python generator for print-ready PDF bingo cards – motivation to head outside and explore your surroundings."
+      },
+      "aiinfra": {
+        "name": "Agentic Infra Dashboard",
+        "tagline": "My AI engineering infrastructure, made visible live.",
+        "detail": "A meta-dashboard over my own agentic-engineering setup: every repo, the global Claude Code agents, skills, rules and hooks, and the workflows they form – including monitoring of TDD-gate blocks and per-repo CI status. Keeps itself current via a hook-driven data branch, with no redeploy needed."
       }
     }
   },
@@ -154,7 +181,21 @@
   },
   "personal": {
     "title": "Beyond code",
-    "items": ["Competitive Pokémon TCG", "Skateboarding", "Baking pizza"]
+    "note": "Two hobbies, the same way of thinking as programming – expand for the connection.",
+    "hobbies": [
+      {
+        "icon": "skateboard",
+        "title": "Skateboarding",
+        "tagline": "Fall, correct, try again – until the trick lands.",
+        "detail": "Every trick follows the same path: countless failed attempts, small corrections, until the movement clicks. Sports neuroscience shows this kind of repeated, focused practice measurably reshapes the cerebellum and keeps the brain in a constant state of neuroplasticity. The same love of iteration – try, learn from the failure, try again – is what I bring to programming."
+      },
+      {
+        "icon": "pokeball",
+        "title": "Competitive Pokémon TCG",
+        "tagline": "Reading a board, not memorising 60 cards.",
+        "detail": "Someone who reads a board quickly isn't seeing 60 individual cards – they're seeing familiar configurations. That's the same “chunking” cognitive science has documented in experts since Chase and Simon's chess studies (1973), later confirmed in fields like radiology, aviation and business forecasting. That exact pattern-recognition-over-memorising is how I read code: familiar bug and architecture patterns jump out, instead of calculating every line from scratch."
+      }
+    ]
   },
   "contact": {
     "title": "Contact",
@@ -173,5 +214,113 @@
   },
   "footer": {
     "built": "Built with Nuxt & Vue."
+  },
+  "workflow": {
+    "meta": {
+      "title": "Konrad Thiemann · AI System",
+      "description": "How I use AI in software development: rules, skills, agents and hooks as one continuous, automatically enforced system."
+    },
+    "back": "Back to overview",
+    "hero": {
+      "label": "AI Setup",
+      "tagline": "Not random prompting. A system.",
+      "intro": "I don't use AI in development ad hoc – I run it through a deliberately built system of four building blocks: rules, skills, agents and hooks. Each takes on a different job – together they form a traceable, automatically enforced workflow, at work and in my own projects alike.",
+      "dashboardCta": "See it live in the Agentic Infra Dashboard"
+    },
+    "pillars": {
+      "title": "Four building blocks, one system",
+      "lead": "Each building block plays a different role in the same flow – from silent convention to automated enforcement.",
+      "items": [
+        {
+          "key": "rules",
+          "title": "Rules",
+          "desc": "Baseline conventions that apply automatically in every repo – I don't have to repeat them in every prompt. One CLAUDE.md per workspace level, plus dedicated rule files per topic.",
+          "items": [
+            "Code style — TS strict, PSR-12/Symfony, Vue SFC conventions",
+            "Git & commits — branch names, Conventional Commits, PR format",
+            "Security & secrets — Keychain instead of plaintext, no real keys in public repos",
+            "Spec-driven development — spec first, then plan, then code",
+            "Test-driven development — red-green-refactor is mandatory",
+            "Worktrees — parallel agents without file collisions"
+          ]
+        },
+        {
+          "key": "skills",
+          "title": "Skills",
+          "desc": "Recurring workflows I trigger with a command instead of explaining them every time. “/feature” chains the others into one complete flow.",
+          "items": [
+            "/feature — chains spec → plan → tests → implementation → gates → review",
+            "/spec — writes the spec (problem, user stories, acceptance criteria)",
+            "/commit — a Conventional Commit in the workspace format",
+            "/worktree — sets up an isolated worktree for parallel work",
+            "/new-app — repo scaffold including CI and commit setup",
+            "/wrap-session — a structured close-out for a work session"
+          ]
+        },
+        {
+          "key": "agents",
+          "title": "Agents",
+          "desc": "Specialised roles with their own toolset that I use deliberately for individual steps, instead of handing one model everything at once.",
+          "items": [
+            "orchestrator — breaks down multi-layer features, coordinates the other agents",
+            "planner — implementation plan incl. interfaces & contracts, writes no code",
+            "tester — writes failing tests from the plan's contracts (red)",
+            "implementer — makes tests pass, sticks to the quality gates",
+            "reviewer — checks diffs for real defects, not style",
+            "security — audits auth, input handling and secrets before shipping",
+            "data-analyst — schema, migration and query planning",
+            "docs — keeps README, changelog and docs in sync with the code"
+          ]
+        },
+        {
+          "key": "hooks",
+          "title": "Hooks",
+          "desc": "Automated enforcement running in the background – not relying on discipline, but technically blocking whatever violates my own rules.",
+          "items": [
+            "git-safety — blocks force-push, pushing to main, reset --hard, .env commits",
+            "tdd-gate — blocks git commit without a green test run, PR creation without lint/typecheck/test",
+            "infra-dashboard-sync — keeps the Agentic Infra Dashboard current automatically",
+            "stop-notify — notifies me when an agent run finishes"
+          ]
+        }
+      ]
+    },
+    "flow": {
+      "title": "How a feature moves through the system",
+      "lead": "Using a non-trivial feature as the example – kicked off with a single command.",
+      "steps": [
+        {
+          "tag": "Skill · /spec",
+          "title": "Write the spec",
+          "desc": "Problem, user stories and testable acceptance criteria – before anything gets built. I sign off on the spec before it moves forward."
+        },
+        {
+          "tag": "Agent · planner",
+          "title": "Create the plan",
+          "desc": "A layer-by-layer plan with interfaces & contracts. No code – just the decisions tester and implementer need as a binding baseline."
+        },
+        {
+          "tag": "Agent · tester",
+          "title": "Write tests (red)",
+          "desc": "Failing tests written directly from the plan's contracts – without knowing the implementation."
+        },
+        {
+          "tag": "Agent · implementer",
+          "title": "Implement (green)",
+          "desc": "Makes the tests pass, nothing more. Sticks to code-style and security rules."
+        },
+        {
+          "tag": "Hook · tdd-gate + git-safety",
+          "title": "Enforce the gate",
+          "desc": "The commit is technically blocked if no green test run has been detected since the last change – regardless of whether I forget."
+        },
+        {
+          "tag": "Agent · reviewer + security",
+          "title": "Review against the spec",
+          "desc": "Checks the diff for real defects and against the spec's acceptance criteria – not for taste."
+        }
+      ],
+      "note": "For one-liners or trivial fixes I run this flow myself, without the full agent apparatus – the system scales with the task, not against it."
+    }
   }
 }

@@ -30,6 +30,13 @@ export default defineNuxtConfig({
       redirectOn: 'root',
     },
     baseUrl: 'https://konradthiemann.dev',
+    customRoutes: 'config',
+    pages: {
+      'ki-workflow': {
+        de: '/ki-workflow',
+        en: '/ai-workflow',
+      },
+    },
   },
 
   app: {
