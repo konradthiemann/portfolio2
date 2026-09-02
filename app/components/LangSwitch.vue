@@ -8,6 +8,16 @@ const options = computed(() =>
     name: l.name ?? l.code.toUpperCase(),
   })),
 )
+
+// switchLocalePath übernimmt clientseitig auch den aktuellen URL-Hash
+// (z. B. #projects nach Klick auf einen Sektions-Link) – serverseitig ist der
+// Hash beim SSR grundsätzlich nie bekannt (Browser senden Fragments nicht
+// mit). Dieser Unterschied erzeugt einen Hydration-Mismatch. Den Hash hier
+// bewusst kappen: Server und Client rendern dann identisch, und der
+// Sprachwechsel bleibt auf derselben Seite statt an einen Anker gebunden.
+function hrefFor(code: string) {
+  return switchLocalePath(code).split('#')[0]
+}
 </script>
 
 <template>
@@ -15,7 +25,7 @@ const options = computed(() =>
     <template v-for="(opt, i) in options" :key="opt.code">
       <span v-if="i > 0" class="lang__sep" aria-hidden="true">/</span>
       <NuxtLink
-        :to="switchLocalePath(opt.code)"
+        :to="hrefFor(opt.code)"
         class="lang__link"
         :class="{ 'is-active': opt.code === locale }"
         :aria-current="opt.code === locale ? 'true' : undefined"
